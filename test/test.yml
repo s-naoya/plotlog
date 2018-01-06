@@ -1,8 +1,7 @@
 ---
 log_extension: "dat"
 graph_extension: "png"
-header_row: 1
-shift_trig_col: 1
+shift_trig_col: 3
 
 graph:
   - name: "test"
@@ -22,3 +21,8 @@ graph:
       - {col: 4, label: "4", color: "blue", style: "-"}
       - {col: 5, label: "5", color: "yellow", style: ":"}
     legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 3}
+
+footprint:
+  foot_size: [0.03, 0.05]
+  supleg_col: 5
+  endpos_col: [[1, 2, 3], [4, 5, 6]]

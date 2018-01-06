@@ -47,7 +47,7 @@ graph:
 
 footprint:
   # [ x[m], y[m] ]
-  footsize: [0.01, 0.02]
+  foot_size: [0.01, 0.02]
   # support leg flag column
   supleg_col: 1
   # support leg flag label.
