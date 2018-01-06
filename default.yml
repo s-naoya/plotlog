@@ -1,6 +1,58 @@
 # !!!!!! NOT EDIT !!!!!!
 ---
-log_extension: csv
-graph_extension: pdf
-log_put_dir: "../log/"
+# log file extension.
+# "csv" or "tsv" or "dat"(separate space)
+log_extension: "csv"
+
+# output graph extension.
+graph_extension: "png"
+
+# log file directory path.
+put_log_dir: "../log/"
+
+# graph output directory path.
 graph_save_dir: "../graph/"
+
+# graph size.
+# [ x[px], y[px] ]
+graph_size: [800, 600]
+
+# header row. If you don't use header, input "-1".
+header_row: 1
+
+# graph x axis column. unit recommend second([s]).
+# line number or header name.
+xaxis_col: 0
+
+# data shift trigger column.
+shift_trig_col: 1
+
+# data shift trigger value.
+shift_trig_val: 1e-5
+
+# graph x axis limiter.
+# [ min[s], max[s] ]
+xlim: [0, None]
+
+# graph kind array
+graph:
+  - name: ""  # use file name
+    xlabel: ""  # x axis label
+    ylabel: ""  # y axis label
+    ylim: [None, None]  # y axis limiter
+    plot:  # plot line array
+      - {col: 1, label: "", color: "order", style: "order"}
+    plotfp: false  # which is plot footprint
+    legend: {loc: "best", bbox_to_anchor: None, ncol: None}  # legend setting
+
+footprint:
+  # [ x[m], y[m] ]
+  footsize: [0.01, 0.02]
+  # support leg flag column
+  supleg_col: 1
+  # support leg flag label.
+  # [ right, left, both ]
+  supleg_label: [0, 1, 2]
+  # end position column.
+  # [[right x, right y, right z], [left x, left y, left z] ]
+  endpos_col: [[1, 2, 3], [4, 5, 6]]
