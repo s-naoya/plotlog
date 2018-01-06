@@ -32,18 +32,18 @@ shift_trig_val: 1e-5
 
 # graph x axis limiter.
 # [ min[s], max[s] ]
-xlim: [0, None]
+xlim: [0, null]
 
 # graph kind array
 graph:
   - name: ""  # use file name
     xlabel: ""  # x axis label
     ylabel: ""  # y axis label
-    ylim: [None, None]  # y axis limiter
+    ylim: [null, null]  # y axis limiter
     plot:  # plot line array
       - {col: 1, label: "", color: "order", style: "order"}
     plotfp: false  # which is plot footprint
-    legend: {loc: "best", bbox_to_anchor: None, ncol: None}  # legend setting
+    legend: {loc: "best", bbox_to_anchor: null, ncol: null}  # legend setting
 
 footprint:
   # [ x[m], y[m] ]
