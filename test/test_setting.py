@@ -23,6 +23,20 @@ class TestSetting(unittest.TestCase):
         self.assertEqual(obj.setting["footprint"]["supleg_label"],
                          obj.default["footprint"]["supleg_label"])
 
+    def test_config_graph_dic(self):
+        obj = Setting("test/test.yml")
+        obj.configure()
+        self.assertEqual(len(obj.graph), 2)
+        self.assertNotEqual(obj.graph[0]["xlabel"],
+                            obj.default["graph"][0]["xlabel"])
+        self.assertEqual(obj.graph[0]["xlabel"], "time[s]")
+        self.assertEqual(obj.graph[0]["ylim"],
+                         obj.default["graph"][0]["ylim"])
+        self.assertEqual(len(obj.graph[0]["plot"]), 2)
+        self.assertTrue("color" in obj.graph[0]["plot"][0])
+        self.assertEqual(obj.graph[0]["legend"]["loc"], "best")
+        self.assertIsNone(obj.graph[0]["legend"]["ncol"])
+
 
 if __name__ == '__main__':
     unittest.main()
