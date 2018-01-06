@@ -1,0 +1,9 @@
+# !!!!!! NOT EDIT !!!!!!
+---
+log_extension: dat
+graph_extension: pdf
+filename:
+- _input
+- _output
+put_log_dir: "../log/"
+graph_save_dir: "../graph/"
