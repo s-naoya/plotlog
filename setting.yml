@@ -1,0 +1,53 @@
+---
+log_extension: dat
+graph_extension: pdf
+put_log_dir: "../log/"
+graph_save_dir: "../graph/"
+xaxis:
+  filename: 0
+  col: 0
+shift_trigger:
+  filename: 1
+  col: 26
+xlim:
+  max: 45
+graph:
+ - name: zmp_x_local
+   xlabel: time[s]
+   ylabel: Position[m]
+   ylim:
+    - -0.08
+    - 0.08
+   plot:
+   - filename: 1
+     col: 25
+     label: Designed ZMP(x)
+     color: green
+   - filename: 1
+     col: 22
+     label: Actual ZMP(x)
+     color: red
+ - name: zmp_y_local
+   xlabel: time[s]
+   ylabel: Position[m]
+   ylim:
+    - -0.08
+    - 0.08
+   plot:
+   - filename: 1
+     col: 26
+     label: Designed ZMP(y)
+     color: green
+   - filename: 1
+     col: 23
+     label: Actual ZMP(y)
+     color: red
+footprint:
+  footsize:
+  - 0.098
+  - 0.063
+  refZMP:
+  - filename: 1
+    col: 85
+  - filename: 1
+    col: 86
