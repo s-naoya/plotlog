@@ -1,0 +1,24 @@
+---
+log_extension: "dat"
+graph_extension: "png"
+header_row: 1
+shift_trig_col: 1
+
+graph:
+  - name: "test"
+    xlabel: "time[s]"
+    ylabel: "position[m]"
+    ylim: [None, None]
+    plot:
+      - {col: 1, label: "1"}
+      - {col: 2, label: "2"}
+    legend: {loc: "best"}
+  - name: "test2"
+    xlabel: "time[s]"
+    ylabel: "position[m]"
+    ylim: [None, None]
+    plot:
+      - {col: 3, label: "3", color: "red", style: "--"}
+      - {col: 4, label: "4", color: "blue", style: "-"}
+      - {col: 5, label: "5", color: "yellow", style: ":"}
+    legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 3}
