@@ -1,29 +1,14 @@
 ---
-log_extension: dat
-graph_extension: png
-put_log_dir: "../log/"
-graph_save_dir: "../graph/"
-xaxis:
-  filename: 0
-  col: 0
-shift_trigger:
-  filename: 1
-  col: 26
-xlim:
-  max: 45
+log_separate_type: ","
+graph_extension: "pdf"
+shift_trig_col: 3
+graph_size: [800, 600]
+
 graph:
- - name: zmp_x_local
-   xlabel: time[s]
-   ylabel: Position[m]
-   ylim:
-    - -0.08
-    - 0.08
-   plot:
-   - filename: 1
-     col: 25
-     label: Designed ZMP(x)
-     color: green
-   - filename: 1
-     col: 22
-     label: Actual ZMP(x)
-     color: red
+  - name: "test"
+    xlabel: "time[s]"
+    ylabel: "position[m]"
+    plot:
+      - {col: "refzmp_x", label: "1"}
+      - {col: "refzmp_y", label: "2"}
+      - {col: "refzmp_z", label: "3"}

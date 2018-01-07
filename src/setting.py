@@ -52,7 +52,6 @@ class Setting:
                     dd = dict()
                     if key in f:
                         for key2 in default["legend"]:
-                            print(key, key2)
                             dd[key2] = f[key][key2] if key2 in f[key] \
                                                     else default[key][key2]
                     else:

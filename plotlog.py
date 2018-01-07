@@ -1,9 +1,33 @@
 import argparse
 
+import copy
+
+from src.setting import Setting
+
 
 def main():
     args = arg_parser()
     print(args)
+    st = Setting("src/default.yml", args.setting)
+    st.configure()
+    set_log_file_paths(args)
+
+
+def set_log_file_paths(args):
+    paths = list()
+    if args.all:
+        pass
+    elif args.after:
+        pass
+    elif args.select:
+        pass
+    elif args.input:
+        paths = copy.copy(args.input)
+    elif args.new:
+        pass
+
+    print(paths)
+    return paths
 
 
 def arg_parser():
@@ -29,8 +53,8 @@ def arg_parser():
     group1.add_argument("--input",
                         help="plot graph which you input log file path.",
                         action="store",
-                        metavar="FILENAME",
-                        nargs="*")
+                        metavar="LOG_FILE_PATH",
+                        nargs="+")
     parser.add_argument("--setting",
                         help="setting file path. default is 'user.yml'.",
                         action="store",
