@@ -1,4 +1,3 @@
-import copy
 import pandas as pd
 
 
@@ -16,6 +15,7 @@ class DataCut:
     def dispose(self):
         self.__log_file_path.clear()
         self.df = None
+        self.x_axis = None
 
     def import_file(self, header, sep):
         for path in self.__log_file_path:
