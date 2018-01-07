@@ -2,24 +2,28 @@
 log_separate_type: ","
 graph_extension: "pdf"
 shift_trig_col: 3
+graph_size: [800, 600]
 
 graph:
   - name: "test"
     xlabel: "time[s]"
     ylabel: "position[m]"
     plot:
-      - {col: 1, label: "1"}
-      - {col: 2, label: "2"}
+      - {col: "refzmp_x", label: "1"}
+      - {col: "refzmp_y", label: "2"}
+      - {col: "refzmp_z", label: "1"}
+      - {col: "refCoM_x", label: "2"}
+      - {col: "refCoM_y", label: "1"}
+      - {col: "refCoM_z", label: "2"}
     legend: {loc: "best"}
   - name: "test2"
     xlabel: "time[s]"
     ylabel: "position[m]"
-    ylim: [0, 20]
     plot:
-      - {col: 3, label: "3", color: "red", style: "--"}
-      - {col: 4, label: "4", color: "blue", style: "-"}
-      - {col: 5, label: "5", color: "yellow", style: ":"}
-    legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 3}
+      - {col: "localrefzmp_x", label: "3", color: null, style: "--"}
+      - {col: "localrefzmp_y", label: "4", color: null, style: "-"}
+      - {col: "localrefzmp_z", label: "5", color: null, style: ":"}
+    legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 4}
 
 footprint:
   foot_size: [0.03, 0.05]

@@ -40,9 +40,9 @@ graph:
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
     plot:  # plot line array
-      - {col: 1, label: "", color: "order", style: "order"}
+      - {col: 1, label: "", color: null, style: "order", width: 1}
     plotfp: false  # which is plot footprint
-    legend: {loc: "best", bbox_to_anchor: null, ncol: null}  # legend setting
+    legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting
 
 footprint:
   # [ x[m], y[m] ]
