@@ -12,8 +12,8 @@ class TestSetting(unittest.TestCase):
 
     def test_config_setting_dic(self):
         self.assertEqual(len(self.obj.graph), 2)
-        self.assertNotEqual(self.obj.setting["log_extension"],
-                            self.obj.default["log_extension"])
+        self.assertNotEqual(self.obj.setting["graph_extension"],
+                            self.obj.default["graph_extension"])
         self.assertNotEqual(self.obj.setting["footprint"]["foot_size"],
                             self.obj.default["footprint"]["foot_size"])
         self.assertEqual(self.obj.setting["footprint"]["supleg_label"],
