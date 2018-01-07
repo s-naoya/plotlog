@@ -3,6 +3,8 @@ log_separate_type: ","
 graph_extension: "pdf"
 shift_trig_col: 3
 graph_size: [800, 600]
+put_log_dir: "test/log/"
+graph_save_dir: "test/graph/"
 
 graph:
   - name: "test"

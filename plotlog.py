@@ -1,6 +1,7 @@
 import argparse
 
 import copy
+from glob import glob
 
 from src.setting import Setting
 
@@ -8,15 +9,15 @@ from src.setting import Setting
 def main():
     args = arg_parser()
     print(args)
-    st = Setting("src/default.yml", args.setting)
+    st = Setting("src/default.yml", args.setting[0])
     st.configure()
-    set_log_file_paths(args)
+    set_log_file_paths(args, st.setting)
 
 
-def set_log_file_paths(args):
+def set_log_file_paths(args, st):
     paths = list()
     if args.all:
-        pass
+        paths = glob(st["put_log_dir"]+"*")
     elif args.after:
         pass
     elif args.select:
