@@ -30,7 +30,7 @@ xaxis_col: 0
 shift_trig_col: 1
 
 # data shift trigger value.
-shift_trig_val: 1e-5
+shift_trig_val: 0.00001
 
 # graph x axis limiter.
 # [ min[s], max[s] ]
