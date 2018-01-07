@@ -1,23 +1,37 @@
+import os
 import copy
 import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
 
+
 from src.datacut import DataCut
+from src.plotgraph import PlotGraph
 from src.setting import Setting
 
 
 def main():
     args = arg_parser()
-    print(args)
     st = Setting("src/default.yml", args.setting[0])
     st.configure()
     log_file_paths = get_log_file_paths(args, st.setting)
+    pg = PlotGraph()
 
     for log_file_path in log_file_paths:
-        data = setup_data_frame(args, st.setting, log_file_path)
-        data.dispose()
+        data, memo = setup_data_frame(args, st.setting, log_file_path)
+        date = get_date(log_file_path)
+        save_dir = st.setting["graph_save_dir"] + date[0:8] + "/" + date + "/"
 
+        if not isdir(st.setting["graph_save_dir"] + date[0:8]):
+            os.mkdir(st.setting["graph_save_dir"] + date[0:8])
+        if not isdir(save_dir):
+            os.mkdir(save_dir)
+
+        for stg in st.graph:
+            graph_path = save_dir + date + "_" + stg["name"] + memo + "." + st.setting["graph_extension"]
+            pg.plot(graph_path, st.setting, stg, data.x_axis, data.df)
+
+        data.dispose()
     st.dispose()
 
 
@@ -32,7 +46,7 @@ def get_log_file_paths(args, st):
     elif args.select:
         paths = [path for path in [st["put_log_dir"]+date+"."+st["log_extension"] for date in args.select] if isfile(path)]
     elif args.new:
-        paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + "/" + splitext(basename(path))[0][0:8] + "/" + splitext(basename(path))[0])]
+        paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + get_date(path)[0:8] + "/" + get_date(path))]
     return paths
 
 
@@ -40,11 +54,19 @@ def setup_data_frame(args, st, path):
     data = DataCut(path)
     data.import_file(st["header_row"], st["log_separate_type"])
     data.set_x_axis(st["xaxis_col"])
-    if args.shift:
+    memo = ""
+    if args.noshift:
+        memo += "_noshift"
+    else:
         data.shift(st["shift_trig_col"], st["shift_trig_val"])
     if args.slice:
         data.slice(args.slice)
-    return data
+        memo += "_slice_" + args.slice[0] + "_" + args.slice[1]
+    return data, memo
+
+
+def get_date(path):
+    return splitext(basename(path))[0]
 
 
 def arg_parser():
@@ -83,8 +105,8 @@ def arg_parser():
                         action="store",
                         nargs=2,
                         metavar=("BEGIN", "END"))
-    parser.add_argument("--shift",
-                        help="shift plot start time and x-axis",
+    parser.add_argument("--noshift",
+                        help="Don't shift plot start time and x-axis",
                         action="store_true")
     return parser.parse_args()
 
