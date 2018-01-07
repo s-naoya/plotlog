@@ -1,6 +1,6 @@
 ---
 log_separate_type: ","
-graph_extension: "pdf"
+graph_extension: "png"
 graph_size: [800, 600]
 put_log_dir: "test/log/"
 graph_save_dir: "test/graph/"
