@@ -8,9 +8,8 @@ class DataCut:
     __log_file_path = list()
     __x_col = None
 
-    def __init__(self, log_file_path_list):
-        for path in log_file_path_list:
-            self.__log_file_path.append(path)
+    def __init__(self, log_file_path):
+        self.__log_file_path.append(log_file_path)
 
     def dispose(self):
         self.__log_file_path.clear()
