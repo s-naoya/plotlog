@@ -3,7 +3,7 @@ import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
 
-
+from src.datacut import DataCut
 from src.setting import Setting
 
 
@@ -12,7 +12,21 @@ def main():
     print(args)
     st = Setting("src/default.yml", args.setting[0])
     st.configure()
-    get_log_file_paths(args, st.setting)
+    log_file_paths = get_log_file_paths(args, st.setting)
+
+    for log_file_path in log_file_paths:
+        # setup data frame
+        data = DataCut(log_file_path)
+        data.import_file(st.setting["header_row"], st.setting["log_separate_type"])
+        data.set_x_axis(st.setting["xaxis_col"])
+        if args.shift:
+            data.shift(st.setting["shift_trig_col"], st.setting["shift_trig_val"])
+        if args.slice:
+            data.slice(args.slice)
+
+        data.dispose()
+
+    st.dispose()
 
 
 def get_log_file_paths(args, st):
@@ -27,8 +41,6 @@ def get_log_file_paths(args, st):
         paths = [path for path in [st["put_log_dir"]+date+"."+st["log_extension"] for date in args.select] if isfile(path)]
     elif args.new:
         paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + "/" + splitext(basename(path))[0][0:8] + "/" + splitext(basename(path))[0])]
-
-    print(paths)
     return paths
 
 
