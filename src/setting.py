@@ -50,9 +50,13 @@ class Setting:
                     d[key] = ll
                 elif key == "legend":
                     dd = dict()
-                    for key2 in default["legend"]:
-                        dd[key2] = f[key][key2] if key2 in f[key] \
-                                                else default[key][key2]
+                    if key in f:
+                        for key2 in default["legend"]:
+                            print(key, key2)
+                            dd[key2] = f[key][key2] if key2 in f[key] \
+                                                    else default[key][key2]
+                    else:
+                        dd = default["legend"]
                     d[key] = dd
                 else:
                     d[key] = f[key] if key in f else default[key]
