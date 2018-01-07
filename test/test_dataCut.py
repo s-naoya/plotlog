@@ -34,7 +34,7 @@ class TestDataCut(unittest.TestCase):
     def test_df_slice(self):
         self.data.import_file(0, ",")
         self.data.set_x_axis("time")
-        self.data.slice(5.0, 10.0)
+        self.data.slice((5.0, 10.0))
         self.assertEqual(self.data.x_axis[0], 5.0)
         self.assertEqual(self.data.x_axis.tail(1).values[0], 10.0)
         self.assertEqual(len(self.data.x_axis), len(self.data.df))
