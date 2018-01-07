@@ -15,15 +15,7 @@ def main():
     log_file_paths = get_log_file_paths(args, st.setting)
 
     for log_file_path in log_file_paths:
-        # setup data frame
-        data = DataCut(log_file_path)
-        data.import_file(st.setting["header_row"], st.setting["log_separate_type"])
-        data.set_x_axis(st.setting["xaxis_col"])
-        if args.shift:
-            data.shift(st.setting["shift_trig_col"], st.setting["shift_trig_val"])
-        if args.slice:
-            data.slice(args.slice)
-
+        data = setup_data_frame(args, st.setting, log_file_path)
         data.dispose()
 
     st.dispose()
@@ -42,6 +34,17 @@ def get_log_file_paths(args, st):
     elif args.new:
         paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + "/" + splitext(basename(path))[0][0:8] + "/" + splitext(basename(path))[0])]
     return paths
+
+
+def setup_data_frame(args, st, path):
+    data = DataCut(path)
+    data.import_file(st["header_row"], st["log_separate_type"])
+    data.set_x_axis(st["xaxis_col"])
+    if args.shift:
+        data.shift(st["shift_trig_col"], st["shift_trig_val"])
+    if args.slice:
+        data.slice(args.slice)
+    return data
 
 
 def arg_parser():
