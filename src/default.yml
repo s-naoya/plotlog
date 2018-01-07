@@ -34,7 +34,7 @@ shift_trig_val: 0.00001
 
 # graph x axis limiter.
 # [ min[s], max[s] ]
-xlim: [0, null]
+xlim: [null, null]
 
 # graph kind array
 graph:

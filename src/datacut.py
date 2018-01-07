@@ -37,10 +37,10 @@ class DataCut:
 
     def slice(self, time):
         idx = [0, None]
-        while float(self.x_axis[idx[0]]) < time[0]:
+        while float(self.x_axis[idx[0]]) < float(time[0]):
             idx[0] += 1
         idx[1] = idx[0]
-        while float(self.x_axis[idx[1]]) <= time[1]:
+        while float(self.x_axis[idx[1]]) <= float(time[1]):
             idx[1] += 1
         slice_df = self.df.iloc[idx[0]:idx[1], :]
         self.df = slice_df.reset_index(drop=True)

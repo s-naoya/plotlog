@@ -30,6 +30,7 @@ def main():
         for stg in st.graph:
             graph_path = save_dir + date + "_" + stg["name"] + memo + "." + st.setting["graph_extension"]
             pg.plot(graph_path, st.setting, stg, data.x_axis, data.df)
+        print("Complete", date)
 
         data.dispose()
     st.dispose()
@@ -61,6 +62,7 @@ def setup_data_frame(args, st, path):
         data.shift(st["shift_trig_col"], st["shift_trig_val"])
     if args.slice:
         data.slice(args.slice)
+        st["xlim"] = [float(args.slice[0]), float(args.slice[1])]
         memo += "_slice_" + args.slice[0] + "_" + args.slice[1]
     return data, memo
 
