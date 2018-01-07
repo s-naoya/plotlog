@@ -9,10 +9,11 @@ class Setting:
     setting = None
     graph = list()
 
-    __default_file_path = "src/default.yml"
+    __default_file_path = None
     __user_file_path = None
 
-    def __init__(self, user_file_path):
+    def __init__(self, default_file_path, user_file_path):
+        self.__default_file_path = default_file_path
         self.__user_file_path = user_file_path
 
     def configure(self):

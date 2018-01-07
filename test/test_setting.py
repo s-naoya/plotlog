@@ -4,7 +4,7 @@ from src.setting import Setting
 
 class TestSetting(unittest.TestCase):
     def setUp(self):
-        self.obj = Setting("test/test.yml")
+        self.obj = Setting("src/default.yml", "test/test.yml")
         self.obj.configure()
 
     def tearDown(self):
