@@ -1,8 +1,7 @@
 # !!!!!! NOT EDIT !!!!!!
 ---
-# log file extension.
-# "csv" or "tsv" or "dat"(separate space)
-log_extension: "csv"
+# log file separate type
+log_separate_type: ","
 
 # output graph extension.
 graph_extension: "png"
@@ -17,8 +16,8 @@ graph_save_dir: "../graph/"
 # [ x[px], y[px] ]
 graph_size: [800, 600]
 
-# header row. If you don't use header, input "-1".
-header_row: 1
+# header row. If you don't use header, input "null".
+header_row: 0
 
 # graph x axis column. unit recommend second([s]).
 # line number or header name.

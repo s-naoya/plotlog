@@ -1,6 +1,6 @@
 ---
-log_extension: "dat"
-graph_extension: "png"
+log_separate_type: ","
+graph_extension: "pdf"
 shift_trig_col: 3
 
 graph:
