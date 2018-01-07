@@ -1,0 +1,2 @@
+class DataCut:
+    pass
