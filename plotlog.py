@@ -1,5 +1,5 @@
 import copy
-from os.path import splitext, basename
+from os.path import splitext, basename, isfile
 import argparse
 from glob import glob
 
@@ -22,7 +22,8 @@ def set_log_file_paths(args, st):
     elif args.after:
         paths = [path for path in glob(st["put_log_dir"]+"*") if splitext(basename(path))[0] >= args.after[0]]
     elif args.select:
-        pass
+        paths = [path for path in
+                 [st["put_log_dir"]+date+"."+st["log_extension"] for date in args.select] if isfile(path)]
     elif args.input:
         paths = copy.copy(args.input)
     elif args.new:
