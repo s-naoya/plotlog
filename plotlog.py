@@ -1,7 +1,8 @@
-import argparse
-
 import copy
+from os.path import splitext, basename
+import argparse
 from glob import glob
+
 
 from src.setting import Setting
 
@@ -19,7 +20,7 @@ def set_log_file_paths(args, st):
     if args.all:
         paths = glob(st["put_log_dir"]+"*")
     elif args.after:
-        pass
+        paths = [path for path in glob(st["put_log_dir"]+"*") if splitext(basename(path))[0] >= args.after[0]]
     elif args.select:
         pass
     elif args.input:

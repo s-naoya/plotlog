@@ -3,6 +3,9 @@
 # log file separate type
 log_separate_type: ","
 
+# log file extension
+log_extension: "csv"
+
 # output graph extension.
 graph_extension: "png"
 
