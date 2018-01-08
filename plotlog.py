@@ -74,41 +74,41 @@ def get_date(path):
 def arg_parser():
     parser = argparse.ArgumentParser()
     group1 = parser.add_mutually_exclusive_group()
+    group1.add_argument("--new",
+                        help="DEFAULT: output graphs that has not been output yet",
+                        action="store_true",
+                        default=True)
     group1.add_argument("--all",
-                        help="plot graph by all log data",
+                        help="output graphs for all data",
                         action="store_true")
     group1.add_argument("--after",
-                        help="plot graph after DATE. DATE is yyyymmddhhmm.",
+                        help="output graphs after the selected DATE(yyyymmddhhmm)",
                         action="store",
                         nargs=1,
                         metavar="DATE")
     group1.add_argument("--select",
-                        help="plot graph only <DATE...>. DATE is yyyymmddhhmm.",
+                        help="output graphs only selected DATEs",
                         action="store",
                         nargs="+",
                         metavar="DATE")
-    group1.add_argument("--new",
-                        help="DEFAULT: plot graph which has not plotted.",
-                        action="store_true",
-                        default=True)
     group1.add_argument("--input",
-                        help="plot graph which you input log file path",
+                        help="output graphs for selected log file",
                         action="store",
                         nargs="+",
                         metavar="LOG_FILE_PATH")
     parser.add_argument("--setting",
-                        help="setting file path. default is 'user.yml'",
+                        help="select setting file (default:'user.yml')",
                         action="store",
                         nargs=1,
                         default="user.yml",
                         metavar="SETTING_FILE_PATH")
     parser.add_argument("--slice",
-                        help="sliced data by start and finish time",
+                        help="sliced data by begin and end x-axis value",
                         action="store",
                         nargs=2,
                         metavar=("BEGIN", "END"))
     parser.add_argument("--noshift",
-                        help="Don't shift plot start time and x-axis",
+                        help="don't shift plot start time and x-axis",
                         action="store_true")
     return parser.parse_args()
 
