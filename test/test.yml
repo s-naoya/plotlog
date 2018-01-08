@@ -1,5 +1,5 @@
 ---
-log_separate_type: ","
+log_separate_char: ","
 graph_extension: "png"
 graph_size: [800, 600]
 put_log_dir: "test/log/"

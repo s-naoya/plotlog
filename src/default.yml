@@ -1,7 +1,7 @@
 # !!!!!! NOT EDIT !!!!!!
 ---
-# log file separate type
-log_separate_type: ","
+# log file separate character
+log_separate_char: ","
 
 # log file extension
 log_extension: "csv"
