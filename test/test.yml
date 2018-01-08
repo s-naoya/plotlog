@@ -12,12 +12,12 @@ graph:
     xlabel: "time[s]"
     ylabel: "position[m]"
     plot:
-      - {col: "refzmp_x", label: "1"}
-      - {col: "refzmp_y", label: "2"}
-      - {col: "refzmp_z", label: "1"}
-      - {col: "refCoM_x", label: "2"}
-      - {col: "refCoM_y", label: "1"}
-      - {col: "refCoM_z", label: "2"}
+      - {col: "refzmp_x"}
+      - {col: "refzmp_y"}
+      - {col: "refzmp_z"}
+      - {col: "refCoM_x"}
+      - {col: "refCoM_y"}
+      - {col: "refCoM_z"}
     legend: {loc: "best"}
   - name: "test2"
     xlabel: "time[s]"
