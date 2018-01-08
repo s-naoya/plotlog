@@ -19,7 +19,7 @@ def main():
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
-        date_time, date = get_date(log_file_path)
+        date_time, date = get_date(log_file_path, st.setting["log_date_length"])
         save_dir = st.setting["graph_save_dir"] + date + "/" + date_time + "/"
 
         if not isdir(st.setting["graph_save_dir"] + date):
@@ -48,7 +48,7 @@ def get_log_file_paths(args, st):
     elif args.select:
         paths = [path for path in [st["put_log_dir"]+date+"."+st["log_extension"] for date in args.select] if isfile(path)]
     elif args.new:
-        paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + get_date(path)[0:8] + "/" + get_date(path))]
+        paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + get_date(path, st["log_date_length"])[1] + "/" + get_date(path, st["log_date_length"])[0])]
     return paths
 
 
@@ -68,9 +68,9 @@ def setup_data_frame(args, st, path):
     return data, memo
 
 
-def get_date(path):
+def get_date(path, length):
     date_time = splitext(basename(path))[0]
-    return date_time, date_time[0:8]
+    return date_time, date_time[0:length-4]  # 4 = length of hhmm
 
 
 def arg_parser():

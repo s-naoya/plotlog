@@ -6,6 +6,10 @@ log_separate_char: ","
 # log file extension
 log_extension: "csv"
 
+# used date length of log file name. 12 or 10.
+# ex.) yyyymmddhhmm -> 12, yymmddhhmm -> 10
+log_date_length: 12
+
 # output graph extension.
 graph_extension: "png"
 
