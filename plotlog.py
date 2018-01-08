@@ -38,17 +38,28 @@ def main():
 
 
 def get_log_file_paths(args, st):
-    paths = list()
+    paths = []
     if args.input:
         paths = copy.copy(args.input)
     elif args.all:
         paths = glob(st["put_log_dir"]+"*")
     elif args.after:
-        paths = [path for path in glob(st["put_log_dir"]+"*") if splitext(basename(path))[0] >= args.after[0]]
+        for path in glob(st["put_log_dir"] + "*"):
+            if splitext(basename(path))[0] >= args.after[0]:
+                paths.append(path)
     elif args.select:
-        paths = [path for path in [st["put_log_dir"]+date+"."+st["log_extension"] for date in args.select] if isfile(path)]
+        select_paths = []
+        for date in args.select:
+            select_path = st["put_log_dir"] + date + "." + st["log_extension"]
+            select_paths.append(select_path)
+        for path in select_paths:
+            if isfile(path):
+                paths.append(path)
     elif args.new:
-        paths = [path for path in glob(st["put_log_dir"]+"*") if not isdir(st["graph_save_dir"] + get_date(path, st["log_date_length"])[1] + "/" + get_date(path, st["log_date_length"])[0])]
+        for path in glob(st["put_log_dir"] + "*"):
+            date_time, date = get_date(path, st["log_date_length"])
+            if not isdir(st["graph_save_dir"] + date + "/" + date_time):
+                paths.append(path)
     return paths
 
 
