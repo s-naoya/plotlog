@@ -1,4 +1,5 @@
 import os
+import re
 import copy
 import argparse
 from glob import glob
@@ -21,15 +22,18 @@ def main():
         data, memo = setup_data_frame(args, st.setting, log_file_path)
         log_file_name = splitext(basename(log_file_path))[0]
 
-        if args.input:
+        if re.search("[%s]" % log_file_name,
+                     "¥d{%d}" % st.setting["log_date_length"]) is None:
             save_dir = st.setting["graph_save_dir"] + "other/" + log_file_name
             if not isdir(save_dir):
                 os.makedirs(save_dir)
         else:
-            date_time, date = get_date(log_file_path, st.setting["log_date_length"])
+            date_time, date = get_date(log_file_path,
+                                       st.setting["log_date_length"])
             save_dir = st.setting["graph_save_dir"] + date + "/" + date_time
             if not isdir(save_dir):
                 os.makedirs(save_dir)
+
         for stg in st.graph:
             graph_path = save_dir + "/" + log_file_name + "_" + stg["name"] \
                          + memo + "." + st.setting["graph_extension"]
