@@ -37,7 +37,8 @@ def main():
         for stg in st.graph:
             graph_path = save_dir + "/" + log_file_name + "_" + stg["name"] \
                          + memo + "." + st.setting["graph_extension"]
-            pg.plot(graph_path, st.setting, stg, data.x_axis, data.df)
+            pg.plot(log_file_path, graph_path,
+                    st.setting, stg, data.x_axis, data.df)
         print("Complete", log_file_name)
 
         data.dispose()
