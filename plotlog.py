@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import copy
 import argparse
 from glob import glob
@@ -22,8 +23,7 @@ def main():
         data, memo = setup_data_frame(args, st.setting, log_file_path)
         log_file_name = splitext(basename(log_file_path))[0]
 
-        if re.search("[%s]" % log_file_name,
-                     "¥d{%d}" % st.setting["log_date_length"]) is None:
+        if is_fn_in_date(log_file_name, st.setting["log_date_length"]) is None:
             save_dir = st.setting["graph_save_dir"] + "other/" + log_file_name
             if not isdir(save_dir):
                 os.makedirs(save_dir)
@@ -53,7 +53,8 @@ def get_log_file_paths(args, st):
         paths = glob(st["put_log_dir"]+"*")
     elif args.after:
         for path in glob(st["put_log_dir"] + "*"):
-            if splitext(basename(path))[0] >= args.after[0]:
+            fn = splitext(basename(path))[0]
+            if fn >= args.after[0] and is_fn_in_date(fn, st["log_date_length"]):
                 paths.append(path)
     elif args.select:
         select_paths = []
@@ -68,6 +69,13 @@ def get_log_file_paths(args, st):
             date_time, date = get_date(path, st["log_date_length"])
             if not isdir(st["graph_save_dir"] + date + "/" + date_time):
                 paths.append(path)
+
+    for path in paths:
+        if not isfile(path):
+            paths.remove(path)
+    if len(paths) == 0:
+        print("There is no target log file.")
+        sys.exit()
     return paths
 
 
@@ -90,6 +98,10 @@ def setup_data_frame(args, st, path):
 def get_date(path, length):
     date_time = splitext(basename(path))[0]
     return date_time, date_time[0:length-4]  # 4 = length of hhmm
+
+
+def is_fn_in_date(s, n):
+    return re.search("[%s]" % s, "¥d{%d}" % n)
 
 
 def arg_parser():

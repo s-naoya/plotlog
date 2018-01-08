@@ -18,7 +18,6 @@ graph:
       - {col: "refCoM_x"}
       - {col: "refCoM_y"}
       - {col: "refCoM_z"}
-      - {col: "yaaa"}
     legend: {loc: "best"}
   - name: "test2"
     xlabel: "time[s]"
