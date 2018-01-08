@@ -19,18 +19,19 @@ def main():
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
-        date = get_date(log_file_path)
-        save_dir = st.setting["graph_save_dir"] + date[0:8] + "/" + date + "/"
+        date_time, date = get_date(log_file_path)
+        save_dir = st.setting["graph_save_dir"] + date + "/" + date_time + "/"
 
-        if not isdir(st.setting["graph_save_dir"] + date[0:8]):
-            os.mkdir(st.setting["graph_save_dir"] + date[0:8])
+        if not isdir(st.setting["graph_save_dir"] + date):
+            os.mkdir(st.setting["graph_save_dir"] + date)
         if not isdir(save_dir):
             os.mkdir(save_dir)
 
         for stg in st.graph:
-            graph_path = save_dir + date + "_" + stg["name"] + memo + "." + st.setting["graph_extension"]
+            graph_path = save_dir + date_time + "_" + stg["name"] \
+                         + memo + "." + st.setting["graph_extension"]
             pg.plot(graph_path, st.setting, stg, data.x_axis, data.df)
-        print("Complete", date)
+        print("Complete", date_time)
 
         data.dispose()
     st.dispose()
@@ -68,7 +69,8 @@ def setup_data_frame(args, st, path):
 
 
 def get_date(path):
-    return splitext(basename(path))[0]
+    date_time = splitext(basename(path))[0]
+    return date_time, date_time[0:8]
 
 
 def arg_parser():
