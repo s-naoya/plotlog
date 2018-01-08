@@ -72,7 +72,7 @@ def get_date(path):
 
 
 def arg_parser():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Plot graph for many log file that is managed by DATE')
     group1 = parser.add_mutually_exclusive_group()
     group1.add_argument("--new",
                         help="DEFAULT: output graphs that has not been output yet",
