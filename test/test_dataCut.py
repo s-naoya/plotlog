@@ -1,11 +1,14 @@
 import unittest
 
+import os.path
+
 from src.datacut import DataCut
 
 
 class TestDataCut(unittest.TestCase):
     def setUp(self):
-        self.data = DataCut(["../test/log/201712251354.csv"])
+        self.data = DataCut("../test/log/201712251354.csv")
+        self.assertTrue("../test/log/201712251354.csv")
 
     def tearDown(self):
         self.data.dispose()
@@ -21,6 +24,8 @@ class TestDataCut(unittest.TestCase):
     def test_df_x_axis(self):
         self.data.import_file(0, ",")
         self.data.set_x_axis("time")
+        self.assertEqual(self.data.x_axis[0], 0.005)
+        self.data.set_x_axis(0)
         self.assertEqual(self.data.x_axis[0], 0.005)
 
     def test_df_shift(self):

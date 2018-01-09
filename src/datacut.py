@@ -21,7 +21,7 @@ class DataCut:
             self.df = pd.read_csv(path, header=header, sep=sep)
 
     def set_x_axis(self, x_col):
-        self.x_axis = self.df[x_col]
+        self.x_axis = self.df.ix[:, x_col]
         self.__x_col = x_col
 
     def shift(self, trig_col, trig_val):
