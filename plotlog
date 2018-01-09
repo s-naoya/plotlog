@@ -99,7 +99,7 @@ def get_date(path, length):
 
 
 def is_fn_in_date(s, n):
-    return re.search("[%s]" % s, "¥d{%d}" % n)
+    return re.search("[%s]" % s, "{%d}" % n)
 
 
 def arg_parser():

@@ -16,6 +16,7 @@ you can easily process a large number of identical format log files.
     - pyyaml
         - `pip3 install yaml`
 
+
 ## Usage
 ```
 plotlog [-h]
@@ -39,6 +40,7 @@ optional arguments:
   --noshift             don't shift plot start time and x-axis
 ```
 
+
 ## Setting
 ### item
 Confirm [src/default.yml](https://github.com/s-naoya/plotlog/blob/master/src/default.yml)
@@ -54,6 +56,7 @@ Also, this is reflected by creating a new yaml file and reading it with the `--s
     - Extension and separate charcter can change setting file.
 - All column equal all row
 - Put on the directory specified in the setting file (except when using --input)
+
 
 ## LICENCE
 This script is licenced under the MIT License. (See [link](https://github.com/s-naoya/plotlog/blob/master/LICENSE))
