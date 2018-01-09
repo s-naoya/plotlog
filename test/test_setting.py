@@ -12,8 +12,8 @@ class TestSetting(unittest.TestCase):
 
     def test_config_setting_dic(self):
         self.assertEqual(len(self.obj.graph), 2)
-        self.assertNotEqual(self.obj.setting["graph_extension"],
-                            self.obj.default["graph_extension"])
+        self.assertNotEqual(self.obj.setting["put_log_dir"],
+                            self.obj.default["put_log_dir"])
         self.assertNotEqual(self.obj.setting["footprint"]["foot_size"],
                             self.obj.default["footprint"]["foot_size"])
         self.assertEqual(self.obj.setting["footprint"]["supleg_label"],
@@ -26,10 +26,10 @@ class TestSetting(unittest.TestCase):
         self.assertEqual(self.obj.graph[0]["xlabel"], "time[s]")
         self.assertEqual(self.obj.graph[0]["ylim"],
                          self.obj.default["graph"][0]["ylim"])
-        self.assertEqual(len(self.obj.graph[0]["plot"]), 2)
+        self.assertEqual(len(self.obj.graph[0]["plot"]), 6)
         self.assertTrue("color" in self.obj.graph[0]["plot"][0])
         self.assertEqual(self.obj.graph[0]["legend"]["loc"], "best")
-        self.assertIsNone(self.obj.graph[0]["legend"]["ncol"])
+        self.assertIsNotNone(self.obj.graph[1]["legend"]["ncol"])
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ class TestPlotGraph(unittest.TestCase):
     def setUp(self):
         self.st = Setting("../src/default.yml", "test.yml")
         self.st.configure()
-        self.data = DataCut(["../test/log/201712251354.csv"])
+        self.data = DataCut("../test/log/201712251354.csv")
         self.data.import_file(0, ",")
         self.data.set_x_axis("time")
         self.pg = PlotGraph()
@@ -19,8 +19,8 @@ class TestPlotGraph(unittest.TestCase):
 
     def test_plot_graph(self):
         for stg in self.st.graph:
-            path = "graph/test_"+stg["name"]+".png"
-            self.pg.plot(path, self.st.setting, stg,
+            path = "graph/other/test/test_"+stg["name"]+".png"
+            self.pg.plot("graph/other/test", path, self.st.setting, stg,
                          self.data.x_axis, self.data.df)
 
 
