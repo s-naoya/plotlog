@@ -57,13 +57,9 @@ def get_log_file_paths(args, st):
             if fn >= args.after[0] and is_fn_in_date(fn, st["log_date_length"]):
                 paths.append(path)
     elif args.select:
-        select_paths = []
         for date in args.select:
-            select_path = st["put_log_dir"] + date + "." + st["log_extension"]
-            select_paths.append(select_path)
-        for path in select_paths:
-            if isfile(path):
-                paths.append(path)
+            path = st["put_log_dir"] + date + "." + st["log_extension"]
+            paths.append(path)
     elif args.new:
         for path in glob(st["put_log_dir"] + "*"):
             date_time, date = get_date(path, st["log_date_length"])
@@ -72,6 +68,7 @@ def get_log_file_paths(args, st):
 
     for path in paths:
         if not isfile(path):
+            print(path, "is not exits.")
             paths.remove(path)
     if len(paths) == 0:
         print("There is no target log file.")
