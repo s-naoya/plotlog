@@ -2,3 +2,5 @@
 .cache/
 test/log/
 test/graph/
+.DS_Store
+__pycache__/
