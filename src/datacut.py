@@ -25,13 +25,13 @@ class DataCut:
         self.__x_col = x_col
 
     def shift(self, trig_col, trig_val):
-        trig_df = self.df[trig_col]
+        trig_df = self.df.ix[:, trig_col]
         idx = [0, None]
         while abs(float(trig_df[idx[0]])) < trig_val:
             idx[0] += 1
         shift_start_time = self.x_axis[idx[0]]
         shift_df = self.df.iloc[idx[0]:idx[1], :].reset_index(drop=True)
-        shift_df[self.__x_col] -= shift_start_time
+        shift_df.ix[:, self.__x_col] -= shift_start_time
         self.df = shift_df
         self.set_x_axis(self.__x_col)
 
