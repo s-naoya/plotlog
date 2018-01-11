@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import copy
+import shutil
 import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
@@ -15,6 +16,10 @@ from src.setting import Setting
 
 def main():
     args = arg_parser()
+
+    if args.copy:
+        copy_config()
+
     st = Setting("src/default.yml", args.setting[0])
     st.configure()
     log_file_paths = get_log_file_paths(args, st.setting)
@@ -117,10 +122,32 @@ def is_fn_in_date(s, f_type):
         sys.exit()
 
 
+def copy_config():
+    if not isfile("user.yml"):
+        print("copy >>", shutil.copy("src/default.yml", "user.yml"))
+        sys.exit()
+    i = 1
+    while True:
+        path = "user-"+str(i)+".yml"
+        if not isfile(path):
+            print("copy >>", shutil.copy("src/default.yml", path))
+            sys.exit()
+        i += 1
+
+
 def arg_parser():
     parser = argparse.ArgumentParser(
         description='Plot graph for many log file that is managed by DATE')
     group1 = parser.add_mutually_exclusive_group()
+    parser.add_argument("--setting",
+                        help="select setting file (default:'user.yml')",
+                        action="store",
+                        nargs=1,
+                        default="user.yml",
+                        metavar="SETTING_FILE_PATH")
+    parser.add_argument("--copy",
+                        help="copy original setting file",
+                        action="store_true")
     group1.add_argument("--new",
                         help="DEFAULT: output graphs that has not been output yet",
                         action="store_true",
@@ -143,12 +170,6 @@ def arg_parser():
                         action="store",
                         nargs="+",
                         metavar="LOG_FILE_PATH")
-    parser.add_argument("--setting",
-                        help="select setting file (default:'user.yml')",
-                        action="store",
-                        nargs=1,
-                        default="user.yml",
-                        metavar="SETTING_FILE_PATH")
     parser.add_argument("--slice",
                         help="sliced data by begin and end x-axis value",
                         action="store",

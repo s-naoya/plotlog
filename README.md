@@ -19,23 +19,23 @@ you can easily process a large number of identical format log files.
 
 ## Usage
 ```
-plotlog [-h]
+plotlog [-h] [--setting SETTING_FILE_PATH] [--copy]
         [--new | --all | --after DATE | --select DATE [DATE ...] |
-        --input LOG_FILE_PATH [LOG_FILE_PATH ...]]
-        [--setting SETTING_FILE_PATH] [--slice BEGIN END] [--noshift]
-
+        --input LOG_FILE_PATH [LOG_FILE_PATH ...]] [--slice BEGIN END]
+        [--noshift]
 
 optional arguments:
   -h, --help            show this help message and exit
+  --setting SETTING_FILE_PATH
+                        select setting file (default:'user.yml')
+  --copy                copy original setting file
   --new                 DEFAULT: output graphs that has not been output yet
   --all                 output graphs for all data
-  --after DATE          output graphs after the selected DATE
+  --after DATE          output graphs after the selected DATE(yyyymmddhhmm)
   --select DATE [DATE ...]
                         output graphs only selected DATEs
   --input LOG_FILE_PATH [LOG_FILE_PATH ...]
                         output graphs for selected log file
-  --setting SETTING_FILE_PATH
-                        select setting file (default:'user.yml')
   --slice BEGIN END     sliced data by begin and end x-axis value
   --noshift             don't shift plot start time and x-axis
 ```

@@ -16,14 +16,17 @@ plotlog
 
 ## 使用方法
 ```
-plotlog [-h]
+plotlog [-h] [--setting SETTING_FILE_PATH] [--copy]
         [--new | --all | --after DATE | --select DATE [DATE ...] |
-        --input LOG\_FILE\_PATH [LOG\_FILE\_PATH ...]]
-        [--setting SETTING\_FILE\_PATH] [--slice BEGIN END] [--noshift]
+        --input LOG_FILE_PATH [LOG_FILE_PATH ...]] [--slice BEGIN END]
+        [--noshift]
 
 
 引数:
   -h, --help            ヘルプの表示
+  --setting SETTING\_FILE\_PATH
+                        使用する設定ファイルの選択 (デフォルト:'user.yml')
+  --copy                設定ファイルをコピー
   --new                 デフォルト: まだ描画されていないログファイルのグラフを出力
   --all                 全てのログファイルについてグラフを出力
   --after DATE          入力した日時以降のログファイルについてグラフを出力
