@@ -1,0 +1,35 @@
+---
+log_date_type: 0
+graph_extension: "png"
+graph_size: [800, 600]
+put_log_dir: "log/"
+graph_save_dir: "graph/"
+shift_trig_col: "trig"
+xlim: [0, null]
+
+graph:
+  - name: "test1"
+    xlabel: "x"
+    ylabel: "val"
+    ylim: [-1.5, 1.5]
+    plot:
+      - {col: "sin"}
+      - {col: "cos"}
+      - {col: "trig"}
+      - {col: "log"}
+  - name: "test2"
+    do_subplot:
+      - xlabel: "x"
+        ylabel: "val"
+        ylim: [-1.5, 1.5]
+        plot:
+          - {col: "sin"}
+          - {col: "cos"}
+        subplot: [2, 1, 1]
+      - xlabel: "x"
+        ylabel: "val"
+        ylim: [-1.5, 1.5]
+        plot:
+          - {col: "trig"}
+          - {col: "log"}
+        subplot: [2, 1, 2]
