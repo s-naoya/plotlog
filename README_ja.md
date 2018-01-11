@@ -13,14 +13,14 @@ plotlog
         - `pip3 install pandas`
     - PyYAML（設定ファイルの読み込み）
         - `pip3 install pyyaml`
-        
+
 
 ## インストール
 まず "plotlog"を任意のフォルダにダウンロードする。
 
 次にスクリプトをインストールする。
 - Mac or Linux
-    - `sudo ln -s (dir)/plotlog /usr/local/bin/`
+    - `sudo ln -s (フォルダ)/plotlog /usr/local/bin/`
 - Windows
     - フォルダにパスを通す
 
