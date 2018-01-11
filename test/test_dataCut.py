@@ -31,7 +31,7 @@ class TestDataCut(unittest.TestCase):
     def test_df_shift(self):
         self.data.import_file(0, ",")
         self.data.set_x_axis("time")
-        self.data.shift("refCoM_y", 1e-5)
+        self.data.shift("refCoM_y", [-1e-5, 1e-5])
         self.assertEqual(self.data.x_axis[0], 0.0)
         self.assertTrue(self.data.df["refCoM_y"][0] < 0.01)
         self.assertTrue(self.data.df["refCoM_y"][50] > 0.001)

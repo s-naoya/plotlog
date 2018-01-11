@@ -3,7 +3,6 @@ import os
 import re
 import sys
 import copy
-import shutil
 import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
@@ -17,11 +16,13 @@ from src.setting import Setting
 def main():
     args = arg_parser()
 
-    if args.copy:
-        copy_config()
+    st = Setting(args.setting)
 
-    st = Setting("src/default.yml", args.setting[0])
+    if args.copy:
+        copy_config(st.default_strings)
+
     st.configure()
+
     log_file_paths = get_log_file_paths(args, st.setting)
     pg = PlotGraph()
 
@@ -122,15 +123,17 @@ def is_fn_in_date(s, f_type):
         sys.exit()
 
 
-def copy_config():
+def copy_config(string):
     if not isfile("user.yml"):
-        print("copy >>", shutil.copy("src/default.yml", "user.yml"))
+        with open('user.yml', 'w') as f:
+            f.writelines(string)
         sys.exit()
     i = 1
     while True:
         path = "user-"+str(i)+".yml"
         if not isfile(path):
-            print("copy >>", shutil.copy("src/default.yml", path))
+            with open(path, 'w') as f:
+                f.writelines(string)
             sys.exit()
         i += 1
 

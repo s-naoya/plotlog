@@ -17,12 +17,12 @@ class PlotGraph:
                 grp["style"] = self.def_style[self.def_num]
                 self.def_num = self.def_num + 1 if self.def_num < 3 else 0
 
-            if not grp["col"] in df.columns:
-                print("error: column '"+grp["col"]+"' is not exist in", p_path)
+            if not grp["col"] in df.columns and grp["col"] > len(df.columns):
+                print("error: column '"+str(grp["col"])+"' is not exist in", p_path)
                 continue
 
             plt.plot(
-                x, df[grp["col"]],
+                x, df.ix[:, grp["col"]],
                 label=grp["label"], color=grp["color"],
                 linestyle=grp["style"], linewidth=grp["width"]
             )

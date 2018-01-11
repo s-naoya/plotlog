@@ -4,7 +4,7 @@ from src.setting import Setting
 
 class TestSetting(unittest.TestCase):
     def setUp(self):
-        self.obj = Setting("src/default.yml", "test/test.yml")
+        self.obj = Setting("test/test.yml")
         self.obj.configure()
 
     def tearDown(self):
@@ -14,10 +14,10 @@ class TestSetting(unittest.TestCase):
         self.assertEqual(len(self.obj.graph), 2)
         self.assertNotEqual(self.obj.setting["put_log_dir"],
                             self.obj.default["put_log_dir"])
-        self.assertNotEqual(self.obj.setting["footprint"]["foot_size"],
-                            self.obj.default["footprint"]["foot_size"])
-        self.assertEqual(self.obj.setting["footprint"]["supleg_label"],
-                         self.obj.default["footprint"]["supleg_label"])
+        # self.assertNotEqual(self.obj.setting["footprint"]["foot_size"],
+        #                     self.obj.default["footprint"]["foot_size"])
+        # self.assertEqual(self.obj.setting["footprint"]["supleg_label"],
+        #                  self.obj.default["footprint"]["supleg_label"])
 
     def test_config_graph_dic(self):
         self.assertEqual(len(self.obj.graph), 2)

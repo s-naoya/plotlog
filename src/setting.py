@@ -4,6 +4,7 @@ import yaml
 
 class Setting:
     default = None
+    default_strings = None
     __user = None
 
     setting = None
@@ -12,9 +13,9 @@ class Setting:
     __default_file_path = None
     __user_file_path = None
 
-    def __init__(self, default_file_path, user_file_path):
-        self.__default_file_path = default_file_path
+    def __init__(self, user_file_path):
         self.__user_file_path = user_file_path
+        self.set_default_setting()
 
     def configure(self):
         self.__input_yaml()
@@ -62,7 +63,62 @@ class Setting:
             to.append(d)
 
     def __input_yaml(self):
-        with open(self.__default_file_path) as f:
-            self.default = yaml.load(f)
+        self.set_default_setting()
         with open(self.__user_file_path) as f:
             self.__user = yaml.load(f)
+
+    def set_default_setting(self):
+        self.default_strings = """
+# log file separate character
+log_separate_char: ","
+
+# log file extension
+log_extension: "csv"
+
+# used date of log file name type. 0 or 1 or 2 or 3.
+# yymmddhhmmss -> 0, yymmddhhmm -> 1, yyyymmddhhmmss -> 2, yyyymmddhhmm -> 3
+log_date_type: 0
+
+# output graph extension.
+graph_extension: "png"
+
+# log file directory path.
+put_log_dir: "log/"
+
+# graph output directory path.
+graph_save_dir: "graph/"
+
+# graph size.
+# [ x[px], y[px] ]
+graph_size: [800, 600]
+
+# header row. If you don't use header, input "null".
+header_row: 0
+
+# graph x axis column.
+# line number or header name.
+xaxis_col: 0
+
+# data shift trigger column.
+shift_trig_col: 1
+
+# data shift trigger value.
+# do shift if shift_trig_val[0] < shift_trig_col < shift_trig_val[1]
+shift_trig_val: [-0.00001, 0.00001]
+
+# graph x axis limiter.
+# [ min[s], max[s] ]
+xlim: [null, null]
+
+# graph kind array
+graph:
+  - name: ""  # use file name
+    xlabel: ""  # x axis label
+    ylabel: ""  # y axis label
+    ylim: [null, null]  # y axis limiter
+    plot:  # plot line array
+      - {col: 1, label: null, color: null, style: "order", width: 1}
+    plotfp: false  # which is plot footprint
+    legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting
+        """
+        self.default = yaml.load(self.default_strings)

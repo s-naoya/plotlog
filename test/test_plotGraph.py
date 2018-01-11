@@ -7,7 +7,7 @@ from src.setting import Setting
 
 class TestPlotGraph(unittest.TestCase):
     def setUp(self):
-        self.st = Setting("../src/default.yml", "test.yml")
+        self.st = Setting("test.yml")
         self.st.configure()
         self.data = DataCut("../test/log/201712251354.csv")
         self.data.import_file(0, ",")
