@@ -34,7 +34,8 @@ xaxis_col: 0
 shift_trig_col: 1
 
 # data shift trigger value.
-shift_trig_val: 0.00001
+# do shift if shift_trig_val[0] < shift_trig_col < shift_trig_val[1]
+shift_trig_val: [-0.00001, 0.00001]
 
 # graph x axis limiter.
 # [ min[s], max[s] ]
@@ -50,15 +51,3 @@ graph:
       - {col: 1, label: null, color: null, style: "order", width: 1}
     plotfp: false  # which is plot footprint
     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting
-
-footprint:
-  # [ x[m], y[m] ]
-  foot_size: [0.01, 0.02]
-  # support leg flag column
-  supleg_col: 1
-  # support leg flag label.
-  # [ right, left, both ]
-  supleg_label: [0, 1, 2]
-  # end position column.
-  # [[right x, right y, right z], [left x, left y, left z] ]
-  endpos_col: [[1, 2, 3], [4, 5, 6]]

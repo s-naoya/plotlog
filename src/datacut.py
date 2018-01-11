@@ -27,7 +27,7 @@ class DataCut:
     def shift(self, trig_col, trig_val):
         trig_df = self.df.ix[:, trig_col]
         idx = [0, None]
-        while abs(float(trig_df[idx[0]])) < trig_val:
+        while trig_val[0] < float(trig_df[idx[0]]) < trig_val[1]:
             idx[0] += 1
         shift_start_time = self.x_axis[idx[0]]
         shift_df = self.df.iloc[idx[0]:idx[1], :].reset_index(drop=True)
