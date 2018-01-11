@@ -24,7 +24,7 @@ plotlog [-h] [--setting SETTING_FILE_PATH] [--copy]
 
 引数:
   -h, --help            ヘルプの表示
-  --setting SETTING\_FILE\_PATH
+  --setting SETTING_FILE_PATH
                         使用する設定ファイルの選択 (デフォルト:'user.yml')
   --copy                設定ファイルをコピー
   --new                 デフォルト: まだ描画されていないログファイルのグラフを出力
@@ -32,14 +32,30 @@ plotlog [-h] [--setting SETTING_FILE_PATH] [--copy]
   --after DATE          入力した日時以降のログファイルについてグラフを出力
   --select DATE [DATE ...]
                         入力した日時のログファイルについてグラフを出力
-  --input LOG\_FILE\_PATH [LOG\_FILE\_PATH ...]
+  --input LOG_FILE_PATH [LOG_FILE_PATH ...]
                         入力したパスログファイルについてグラフを出力
 
-  --setting SETTING\_FILE\_PATH
+  --setting SETTING_FILE_PATH
                         使用する設定ファイルの選択 (デフォルト:'user.yml')
   --slice BEGIN END     入力したX軸値に基いて抽出したグラフを出力
   --noshift             ある列が0以上の数値になった地点へグラフ開始地点へのシフトを行わない
 ```
+
+まず設定ファイルを作成する。
+```
+plotlog --copy
+```
+作成されたuser.ymlを編集して、各パスや作成したいグラフ等を指定する。
+変更する必要のない設定項目は削除してもよい。
+
+設定し終えたらグラフを作成する。
+```
+plotlog
+```
+user.ymlが正しく設定されていれば、
+まだ出力されていないログファイルについてグラフが描画される。
+
+
 
 ## 設定ファイル
 ### 設定項目

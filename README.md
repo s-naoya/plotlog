@@ -40,6 +40,20 @@ optional arguments:
   --noshift             don't shift plot start time and x-axis
 ```
 
+First, create setting file.
+```
+plotlog --copy
+```
+edit the created user.yml, setting each pass and the graph etc to create.
+Setting items that do not need to be changed may be deleted.
+
+Finish edit user.yml, create graph.
+```
+plotlog
+```
+If user.yml is set correctly, a graph is drawn for a log file that has not yet been output.
+
+
 
 ## Setting
 ### item
