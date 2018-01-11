@@ -24,13 +24,13 @@ def main():
         data, memo = setup_data_frame(args, st.setting, log_file_path)
         log_file_name = splitext(basename(log_file_path))[0]
 
-        if is_fn_in_date(log_file_name, st.setting["log_date_length"]) is None:
+        if is_fn_in_date(log_file_name, st.setting["log_date_type"]) is None:
             save_dir = st.setting["graph_save_dir"] + "other/" + log_file_name
             if not isdir(save_dir):
                 os.makedirs(save_dir)
         else:
             date_time, date = get_date(log_file_path,
-                                       st.setting["log_date_length"])
+                                       st.setting["log_date_type"])
             save_dir = st.setting["graph_save_dir"] + date + "/" + date_time
             if not isdir(save_dir):
                 os.makedirs(save_dir)
@@ -55,7 +55,7 @@ def get_log_file_paths(args, st):
     elif args.after:
         for path in glob(st["put_log_dir"] + "*"):
             fn = splitext(basename(path))[0]
-            if fn >= args.after[0] and is_fn_in_date(fn, st["log_date_length"]):
+            if fn >= args.after[0] and is_fn_in_date(fn, st["log_date_type"]):
                 paths.append(path)
     elif args.select:
         for date in args.select:
@@ -63,7 +63,7 @@ def get_log_file_paths(args, st):
             paths.append(path)
     elif args.new:
         for path in glob(st["put_log_dir"] + "*"):
-            date_time, date = get_date(path, st["log_date_length"])
+            date_time, date = get_date(path, st["log_date_type"])
             if not isdir(st["graph_save_dir"] + date + "/" + date_time):
                 paths.append(path)
 
@@ -93,13 +93,28 @@ def setup_data_frame(args, st, path):
     return data, memo
 
 
-def get_date(path, length):
+def get_date(path, f_type):
     date_time = splitext(basename(path))[0]
-    return date_time, date_time[0:length-4]  # 4 = length of hhmm
+    date = date_time[0:6] if f_type == 0 or f_type == 1 else date_time[0:8]
+    return date_time, date
 
 
-def is_fn_in_date(s, n):
-    return re.search("[%s]" % s, "{%d}" % n)
+def is_fn_in_date(s, f_type):
+    if f_type == 0:
+        return re.search("[%s]" % s, "[0-9]{2}[0-1][0-9][0-3][0-9]"
+                                     "[0-2][0-9][0-5][0-9][0-5][0-9]")
+    elif f_type == 1:
+        return re.search("[%s]" % s, "[0-9]{2}[0-1][0-9][0-3][0-9]"
+                                     "[0-2][0-9][0-5][0-9]")
+    elif f_type == 2:
+        return re.search("[%s]" % s, "[0-9]{4}[0-1][0-9][0-3][0-9]"
+                                     "[0-2][0-9][0-5][0-9][0-5][0-9]")
+    elif f_type == 3:
+        return re.search("[%s]" % s, "[0-9]{4}[0-1][0-9][0-3][0-9]"
+                                     "[0-2][0-9][0-5][0-9]")
+    else:
+        print("error: log_date_type is 0 or 1 or 2 or 3")
+        sys.exit()
 
 
 def arg_parser():
