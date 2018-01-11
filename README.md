@@ -17,6 +17,17 @@ you can easily process a large number of identical format log files.
         - `pip3 install pyyaml`
 
 
+## install
+First download and extract "plotlog"
+
+Second install script.
+- Mac or Linux
+    - `sudo ln -s (dir)/plotlog /usr/local/bin/`
+- Windows
+    - forming a path
+   
+
+
 ## Usage
 ```
 plotlog [-h] [--setting SETTING_FILE_PATH] [--copy]
