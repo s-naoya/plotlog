@@ -10,6 +10,21 @@ class PlotGraph:
 
     def plot(self, p_path, g_path, st, gr, x, df):
         plt.figure(figsize=(st["graph_size"][0]*0.01, st["graph_size"][1]*0.01))
+
+        if "do_subplot" in gr:
+            self.multi_plot(p_path, st, gr["do_subplot"], x, df)
+        else:
+            self.single_plot(p_path, st, gr, x, df)
+
+        plt.savefig(g_path)
+        plt.close()
+
+    def multi_plot(self, p_path, st, gr, x, df):
+        for g in gr:
+            plt.subplot(g["subplot"][0], g["subplot"][1], g["subplot"][2])
+            self.single_plot(p_path, st, g, x, df)
+
+    def single_plot(self, p_path, st, gr, x, df):
         plt.xlabel(gr["xlabel"])
         plt.ylabel(gr["ylabel"])
         for grp in gr["plot"]:
@@ -33,5 +48,3 @@ class PlotGraph:
             plt.legend(loc=gr["legend"]["loc"],
                        bbox_to_anchor=gr["legend"]["bbox_to_anchor"],
                        ncol=gr["legend"]["ncol"])
-        plt.savefig(g_path)
-        plt.close()

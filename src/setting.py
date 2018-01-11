@@ -1,6 +1,5 @@
 import copy
 import yaml
-from pprint import pprint
 
 
 class Setting:
@@ -27,8 +26,6 @@ class Setting:
 
         self.__update_graph(copy.deepcopy(self.default["graph"][0]),
                             self.__user["graph"], self.graph)
-        print("self.graph >>")
-        pprint(self.graph)
 
     def dispose(self):
         self.default.clear()
@@ -66,13 +63,14 @@ class Setting:
         ll = []
         for f in from_:
             d = {}
-            for key in f:
-                if key == "subplot":
-                    d[key] = f[key] if key in f else None
+            for key in default:
+                if key == "name":
+                    continue
                 elif key == "legend":
                     d[key] = self.__setup_legend(default["legend"], f)
                 else:
                     d[key] = f[key] if key in f else default[key]
+            d["subplot"] = f["subplot"] if "subplot" in f else None
             ll.append(d)
         return ll
 
