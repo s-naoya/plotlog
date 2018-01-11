@@ -67,10 +67,6 @@ If user.yml is set correctly, a graph is drawn for a log file that has not yet b
 
 
 ## Setting
-### item
-Confirm [src/default.yml](https://github.com/s-naoya/plotlog/blob/master/src/default.yml)
-
-### way
 It is reflected by editing user.yml.
 Also, this is reflected by creating a new yaml file and reading it with the `--setting` argument.
 

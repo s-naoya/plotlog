@@ -68,11 +68,7 @@ plotlog
 
 
 
-## 設定ファイル
-### 設定項目
-[src/default.yml](https://github.com/s-naoya/plotlog/blob/master/src/default.yml)を確認。
-
-### 設定方法
+## 設定方法
 user.ymlを編集することで反映される。
 また、新しくyamlファイルを作成し、`--setting`引数で読み込むことでこれが反映される。
 
