@@ -29,8 +29,9 @@ class PlotGraph:
         plt.xlim(st["xlim"])
         plt.ylim(gr["ylim"])
 
-        plt.legend(loc=gr["legend"]["loc"],
-                   bbox_to_anchor=gr["legend"]["bbox_to_anchor"],
-                   ncol=gr["legend"]["ncol"])
+        if gr["legend"]["loc"] is not None:
+            plt.legend(loc=gr["legend"]["loc"],
+                       bbox_to_anchor=gr["legend"]["bbox_to_anchor"],
+                       ncol=gr["legend"]["ncol"])
         plt.savefig(g_path)
         plt.close()

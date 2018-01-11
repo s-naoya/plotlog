@@ -112,13 +112,28 @@ xlim: [null, null]
 
 # graph kind array
 graph:
-  - name: ""  # use file name
+  - name: "1"  # use file name
     xlabel: ""  # x axis label
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
     plot:  # plot line array
       - {col: 1, label: null, color: null, style: "order", width: 1}
     plotfp: false  # which is plot footprint
-    legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting
+    legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting. if no use legend, loc: null
         """
         self.default = yaml.load(self.default_strings)
+
+  # - name "2"
+  #   subplot:
+  #   - xlabel: ""
+  #     ylabel: ""
+  #     ylim: [null, null]
+  #     plot:
+  #       - {col: 1, label: null, color: null, style: "order", width: 1}
+  #     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
+  #   - xlabel: ""
+  #     ylabel: ""
+  #     ylim: [null, null]
+  #     plot:
+  #       - {col: 1, label: null, color: null, style: "order", width: 1}
+  #     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
