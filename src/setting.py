@@ -68,6 +68,10 @@ class Setting:
                     continue
                 elif key == "legend":
                     d[key] = self.__setup_legend(default["legend"], f)
+                elif key == "plot":
+                    lll = []
+                    self.__update_graph(default[key][0], f[key], lll)
+                    d[key] = lll
                 else:
                     d[key] = f[key] if key in f else default[key]
             d["subplot"] = f["subplot"] if "subplot" in f else None
