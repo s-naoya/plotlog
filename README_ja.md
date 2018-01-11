@@ -11,8 +11,8 @@ plotlog
         - `pip3 install matplotlib`
     - pandas（ログファイルの読み込み）
         - `pip3 install pandas`
-    - pyyaml（設定ファイルの読み込み）
-        - `pip3 install yaml`
+    - PyYAML（設定ファイルの読み込み）
+        - `pip3 install pyyaml`
 
 ## 使用方法
 ```
@@ -48,7 +48,9 @@ user.ymlを編集することで反映される。
 
 
 ## フォーマット要件
-- ログファイルの名称は日時を用いて"yyyymmddhhmm.csv"もしくは"yymmddhhmm.csv"を推奨（拡張子は設定ファイルで変更可能）
+- ログファイルの名称は日時を用いて"yymmddhhmmss.csv", "yymmddhhmm.csv", "yyyymmddhhmmss.csv", "yyyymmddhhmm.csv"を推奨.
+    - e.g.) 171230235900.csv
+- 拡張子、セパレートタイプは設定ファイルで変更可能
 - 全ての行で列数が同じ
 - 設定ファイルで指定されたディレクトリ内に設置（--input使用時を除く）
 
