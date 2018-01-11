@@ -1,5 +1,6 @@
 import copy
 import yaml
+from pprint import pprint
 
 
 class Setting:
@@ -15,7 +16,7 @@ class Setting:
 
     def __init__(self, user_file_path):
         self.__user_file_path = user_file_path
-        self.set_default_setting()
+        self.__set_default_setting()
 
     def configure(self):
         self.__input_yaml()
@@ -26,6 +27,8 @@ class Setting:
 
         self.__update_graph(copy.deepcopy(self.default["graph"][0]),
                             self.__user["graph"], self.graph)
+        print("self.graph >>")
+        pprint(self.graph)
 
     def dispose(self):
         self.default.clear()
@@ -43,31 +46,53 @@ class Setting:
 
     def __update_graph(self, default, from_, to):
         for f in from_:
-            d = dict()
-            for key in default:
-                if key == "plot":
-                    ll = list()
-                    self.__update_graph(default[key][0], f[key], ll)
-                    d[key] = ll
-                elif key == "legend":
-                    dd = dict()
-                    if key in f:
-                        for key2 in default["legend"]:
-                            dd[key2] = f[key][key2] if key2 in f[key] \
-                                                    else default[key][key2]
+            d = {}
+            if "do_subplot" in f:
+                d["do_subplot"] = self.__setup_subplot(default, f["do_subplot"])
+                d["name"] = f["name"]
+            else:
+                for key in default:
+                    if key == "plot":
+                        ll = []
+                        self.__update_graph(default[key][0], f[key], ll)
+                        d[key] = ll
+                    elif key == "legend":
+                        d[key] = self.__setup_legend(default["legend"], f)
                     else:
-                        dd = default["legend"]
-                    d[key] = dd
-                else:
-                    d[key] = f[key] if key in f else default[key]
+                        d[key] = f[key] if key in f else default[key]
             to.append(d)
 
+    def __setup_subplot(self, default, from_):
+        ll = []
+        for f in from_:
+            d = {}
+            for key in f:
+                if key == "subplot":
+                    d[key] = f[key] if key in f else None
+                elif key == "legend":
+                    d[key] = self.__setup_legend(default["legend"], f)
+                else:
+                    d[key] = f[key] if key in f else default[key]
+            ll.append(d)
+        return ll
+
+    @staticmethod
+    def __setup_legend(default, from_):
+        d = {}
+        if "legend" in from_:
+            for key in default:
+                d[key] = from_["legend"][key] if key in from_["legend"] \
+                    else default[key]
+        else:
+            d = default
+        return d
+
     def __input_yaml(self):
-        self.set_default_setting()
+        self.__set_default_setting()
         with open(self.__user_file_path) as f:
             self.__user = yaml.load(f)
 
-    def set_default_setting(self):
+    def __set_default_setting(self):
         self.default_strings = """
 # log file separate character
 log_separate_char: ","
@@ -112,28 +137,28 @@ xlim: [null, null]
 
 # graph kind array
 graph:
-  - name: "1"  # use file name
+  - name: "1"  # file name
     xlabel: ""  # x axis label
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
     plot:  # plot line array
       - {col: 1, label: null, color: null, style: "order", width: 1}
-    plotfp: false  # which is plot footprint
     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting. if no use legend, loc: null
+  - name: "2"
+    do_subplot:
+    - xlabel: ""
+      ylabel: ""
+      ylim: [null, null]
+      plot:
+        - {col: 1, label: null, color: null, style: "order", width: 1}
+      legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
+      subplot: [null, null, null]
+    - xlabel: ""
+      ylabel: ""
+      ylim: [null, null]
+      plot:
+        - {col: 2, label: null, color: null, style: "order", width: 1}
+      legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
+      subplot: [null, null, null]
         """
         self.default = yaml.load(self.default_strings)
-
-  # - name "2"
-  #   subplot:
-  #   - xlabel: ""
-  #     ylabel: ""
-  #     ylim: [null, null]
-  #     plot:
-  #       - {col: 1, label: null, color: null, style: "order", width: 1}
-  #     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-  #   - xlabel: ""
-  #     ylabel: ""
-  #     ylim: [null, null]
-  #     plot:
-  #       - {col: 1, label: null, color: null, style: "order", width: 1}
-  #     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
