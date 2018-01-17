@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 class PlotGraph:
     def_style = ["-", "--", "-.", ":"]
-    def_num = 0
 
     def __init__(self):
         pass
@@ -25,12 +24,13 @@ class PlotGraph:
             self.single_plot(p_path, st, g, x, df)
 
     def single_plot(self, p_path, st, gr, x, df):
+        def_num = 0
         plt.xlabel(gr["xlabel"])
         plt.ylabel(gr["ylabel"])
         for grp in gr["plot"]:
             if grp["style"] == "order":
-                grp["style"] = self.def_style[self.def_num]
-                self.def_num = self.def_num + 1 if self.def_num < 3 else 0
+                grp["style"] = self.def_style[def_num]
+                def_num = def_num + 1 if def_num < 3 else 0
 
             if not grp["col"] in df.columns and grp["col"] > len(df.columns):
                 print("error: column '"+str(grp["col"])+"' is not exist in", p_path)
