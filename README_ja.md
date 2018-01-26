@@ -8,21 +8,19 @@ plotlog
 - 言語：Python 3.6.3以降
 - 必要パッケージ
     - matplotlib（グラフの描画）
-        - `pip3 install matplotlib`
     - pandas（ログファイルの読み込み）
-        - `pip3 install pandas`
     - PyYAML（設定ファイルの読み込み）
-        - `pip3 install pyyaml`
 
 
 ## インストール
-まず "plotlog"を任意のフォルダにダウンロードする。
-
-次にスクリプトをインストールする。
-- Mac or Linux
-    - `sudo ln -s (フォルダ)/plotlog /usr/local/bin/`
-- Windows
-    - フォルダにパスを通す
+```sh
+cd (plotlog dir)
+pip3 install matplotlib
+pip3 install pandas
+pip3 install pyyaml
+pip3 install cx_freeze
+python3 setup.py install
+```
 
 
 ## 使用方法

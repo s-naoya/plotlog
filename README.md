@@ -10,22 +10,20 @@ you can easily process a large number of identical format log files.
 - language : After Python 3.6.3
 - necessary package
     - matplotlib
-        - `pip3 install matplotlib`
     - pandas
-        - `pip3 install pandas`
     - PyYAML
-        - `pip3 install pyyaml`
 
 
 ## install
-First download and extract "plotlog"
+```sh
+cd (plotlog dir)
+pip3 install matplotlib
+pip3 install pandas
+pip3 install pyyaml
+pip3 install cx_freeze
+python3 setup.py install
+```
 
-Second install script.
-- Mac or Linux
-    - `sudo ln -s (dir)/plotlog /usr/local/bin/`
-- Windows
-    - forming a path
-   
 
 
 ## Usage
