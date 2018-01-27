@@ -7,13 +7,15 @@ import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
 
-import src
+from plotlog.datacut import DataCut
+from plotlog.plotgraph import PlotGraph
+from plotlog.setting import Setting
 
 
 def main():
     args = arg_parser()
 
-    st = src.setting.Setting(args.setting)
+    st = Setting(args.setting)
 
     if args.copy:
         copy_config(st.default_strings)
@@ -21,7 +23,7 @@ def main():
     st.configure()
 
     log_file_paths = get_log_file_paths(args, st.setting)
-    pg = src.plotgraph.PlotGraph()
+    pg = PlotGraph()
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
@@ -81,7 +83,7 @@ def get_log_file_paths(args, st):
 
 
 def setup_data_frame(args, st, path):
-    data = src.datacut.DataCut(path)
+    data = DataCut(path)
     data.import_file(st["header_row"], st["log_separate_char"])
     data.set_x_axis(st["xaxis_col"])
     memo = ""
