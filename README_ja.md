@@ -14,12 +14,7 @@ plotlog
 
 ## インストール
 ```sh
-cd (plotlog dir)
-pip3 install matplotlib
-pip3 install pandas
-pip3 install pyyaml
-pip3 install cx_freeze
-python3 setup.py install
+pip3 install plotlog
 ```
 
 
