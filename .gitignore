@@ -2,5 +2,8 @@
 .cache/
 test/log/
 test/graph/
+build/
+dist/
+plotlog.egg-info/
 .DS_Store
 __pycache__/
