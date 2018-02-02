@@ -7,9 +7,9 @@ import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
 
-from plotlog.datacut import DataCut
-from plotlog.plotgraph import PlotGraph
-from plotlog.setting import Setting
+from src.datacut import DataCut
+from src.plotgraph import PlotGraph
+from src.setting import Setting
 
 
 def main():

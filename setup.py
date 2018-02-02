@@ -11,7 +11,7 @@ except IOError:
 
 setup(
     name='plotlog',
-    version='0.1.3',
+    version='0.1.4',
     description='Plot graph for many log file that is managed by DATE',
     long_description=readme,
     url='https://github.com/s-naoya/plotlog',
@@ -22,7 +22,10 @@ setup(
     packages=find_packages(),
     install_requires=requires,
     classifiers=[
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7'
     ],
     entry_points="""
       # -*- Entry points: -*-
