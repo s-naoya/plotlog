@@ -7,7 +7,7 @@ easily process a large number of identical format log files.
 System requirements
 -------------------
 
--  language : After Python 3.6.3
+-  language : After Python 3.4.7
 -  necessary package
 
    -  matplotlib
@@ -20,6 +20,13 @@ install
 .. code:: sh
 
     pip3 install plotlog
+
+If you need build your environment
+.. code:: sh
+    git clone https://github.com/s-naoya/plotlog
+    cd plotlog
+    python setup.py install
+
 
 Usage
 -----

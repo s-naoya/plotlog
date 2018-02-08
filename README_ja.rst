@@ -7,7 +7,7 @@ plotlog
 動作要件
 --------
 
--  言語：Python 3.6.3以降
+-  言語：Python 3.4.7以降
 -  必要パッケージ
 
    -  matplotlib（グラフの描画）
@@ -19,7 +19,14 @@ plotlog
 
 .. code:: sh
 
-    pip3 install plotlog
+    pip install plotlog
+
+手元でビルドしたい場合は
+.. code:: sh
+    git clone https://github.com/s-naoya/plotlog
+    cd plotlog
+    python setup.py install
+
 
 使用方法
 --------
