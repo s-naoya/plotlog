@@ -3,6 +3,7 @@ import sys
 import copy
 from glob import glob
 from os.path import splitext, basename, isdir, isfile
+from os import makedirs
 
 
 class SelectLog:
@@ -32,6 +33,17 @@ class SelectLog:
 
         return paths
 
+    def setup_save_dir(self, logfile_name, log_date_type, graph_save_dir):
+        if self.__is_fn_in_date(logfile_name, log_date_type) is None:
+            save_dir = graph_save_dir + "other/" + logfile_name
+        else:
+            date_time, date = self.__get_date(logfile_name, log_date_type)
+            save_dir = graph_save_dir + date + "/" + date_time
+
+        if not isdir(save_dir):
+            makedirs(save_dir)
+        return save_dir
+
     def __get_paths_of_after(self, date, put_log_dir, log_date_type):
         all_paths = self.__all_logfile_path(put_log_dir)
         paths = list()
@@ -44,7 +56,7 @@ class SelectLog:
     def __get_paths_of_new(self, put_log_dir, graph_save_dir, log_date_type):
         paths = list()
         for path in self.__all_logfile_path(put_log_dir):
-            date_time, date = self.__get_date(path, log_date_type)
+            date_time, date = self.__get_date(self.get_fn(path), log_date_type)
             if not isdir(graph_save_dir + date + "/" + date_time):
                 paths.append(path)
         return paths
@@ -85,7 +97,10 @@ class SelectLog:
             sys.exit()
 
     @staticmethod
-    def __get_date(path, f_type):
-        date_time = splitext(basename(path))[0]
+    def __get_date(date_time, f_type):
         date = date_time[0:6] if f_type == 0 or f_type == 1 else date_time[0:8]
         return date_time, date
+
+    @staticmethod
+    def get_fn(path):
+        return splitext(basename(path))[0]
