@@ -1,5 +1,5 @@
 import copy
-
+from glob import glob
 
 class SelectLog:
     def __init__(self):
@@ -10,7 +10,7 @@ class SelectLog:
         if args.input:
             paths = copy.copy(args.input)
         elif args.all:
-            pass
+            paths = glob(put_log_dir + "*")
         elif args.after:
             pass
         elif args.select:
