@@ -7,11 +7,11 @@ from plotlog.setting import Setting
 
 class TestPlotGraph(unittest.TestCase):
     def setUp(self):
-        self.st = Setting("test.yml")
+        self.st = Setting("user.yml")
         self.st.configure()
-        self.data = DataCut("../test/log/201712251354.csv")
+        self.data = DataCut("../test/log/170101000000.csv")
         self.data.import_file(0, ",")
-        self.data.set_x_axis("time")
+        self.data.set_x_axis("x")
         self.pg = PlotGraph()
 
     def tearDown(self):

@@ -32,4 +32,5 @@ graph:
         plot:
           - {col: "trig"}
           - {col: "log"}
+        legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 4}
         subplot: [2, 1, 2]
