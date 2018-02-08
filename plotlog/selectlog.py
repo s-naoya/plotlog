@@ -2,7 +2,7 @@ import re
 import sys
 import copy
 from glob import glob
-from os.path import splitext, basename, isdir
+from os.path import splitext, basename, isdir, isfile
 
 
 class SelectLog:
@@ -21,6 +21,14 @@ class SelectLog:
             paths = self.__get_paths_of_select(args.select, put_log_dir)
         elif args.new:
             paths = self.__get_paths_of_new(put_log_dir, graph_save_dir, log_date_type)
+
+        for path in paths:
+            if not isfile(path):
+                print(path, "is not exits.")
+                paths.remove(path)
+        if len(paths) == 0:
+            print("There is no target log file.")
+            sys.exit()
 
         return paths
 
