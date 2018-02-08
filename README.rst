@@ -19,10 +19,12 @@ install
 
 .. code:: sh
 
-    pip3 install plotlog
+    pip install plotlog
 
 If you need build your environment
+
 .. code:: sh
+
     git clone https://github.com/s-naoya/plotlog
     cd plotlog
     python setup.py install

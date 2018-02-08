@@ -22,7 +22,9 @@ plotlog
     pip install plotlog
 
 手元でビルドしたい場合は
+
 .. code:: sh
+
     git clone https://github.com/s-naoya/plotlog
     cd plotlog
     python setup.py install
