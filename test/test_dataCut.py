@@ -34,6 +34,14 @@ class TestDataCut(unittest.TestCase):
         self.assertTrue(self.data.df["trig"][0] < 0.001)
         self.assertTrue(self.data.df["trig"][1] > 0.001)
 
+    def test_df_shift_head(self):
+        self.data.import_file(0, ",")
+        self.data.set_x_axis("x")
+        self.data.shift("cos", [-1e-5, 1e-5])
+        self.assertEqual(self.data.x_axis[0], 0.0)
+        self.assertEqual(self.data.df["sin"][0], 0.0)
+        self.assertEqual(self.data.df["cos"][0], 1/3)
+
     def test_df_slice(self):
         self.data.import_file(0, ",")
         self.data.set_x_axis("x")
