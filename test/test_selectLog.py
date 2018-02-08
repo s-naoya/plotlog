@@ -1,7 +1,8 @@
 import unittest
 from plotlog.selectlog import SelectLog
+
 from argparse import Namespace
-import os.path
+from os.path import isfile
 
 
 class TestSelectLog(unittest.TestCase):
@@ -9,7 +10,7 @@ class TestSelectLog(unittest.TestCase):
         self.sl = SelectLog()
         self.put_log_dir = "log/"
         self.graph_save_dir = "graph/"
-        self.log_date_type = "0"
+        self.log_date_type = 0
         self.args = Namespace(after=None, all=False, copy=False, input=None,
                               new=True, noshift=False, select=None,
                               setting='user.yml', slice=None)
@@ -23,8 +24,8 @@ class TestSelectLog(unittest.TestCase):
                                           self.graph_save_dir, self.log_date_type)
         self.assertEqual(paths[0], "log/170101000000.csv")
         self.assertEqual(paths[1], "log/170101120000.csv")
-        self.assertTrue(os.path.exists(paths[0]))
-        self.assertTrue(os.path.exists(paths[1]))
+        self.assertTrue(isfile(paths[0]))
+        self.assertTrue(isfile(paths[1]))
 
     def test_args_all(self):
         self.args = Namespace(after=None, all=True, copy=False, input=None,
@@ -32,9 +33,24 @@ class TestSelectLog(unittest.TestCase):
                               setting='user.yml', slice=None)
         paths = self.sl.get_logfile_paths(self.args, self.put_log_dir,
                                           self.graph_save_dir, self.log_date_type)
+
         for path in paths:
-            print(path)
-            self.assertTrue(os.path.isfile(path))
+            self.assertTrue(isfile(path))
+
+    def test_args_after(self):
+        self.args = Namespace(after=["170102000000"], all=False, copy=False, input=None,
+                              new=True, noshift=False, select=None,
+                              setting='user.yml', slice=None)
+        paths = self.sl.get_logfile_paths(self.args, self.put_log_dir,
+                                          self.graph_save_dir, self.log_date_type)
+
+        for path in paths:
+            self.assertTrue(isfile(path))
+        self.assertTrue("log/170102000000.csv" in paths)
+        self.assertTrue("log/test1/170102180000.csv" in paths)
+        self.assertTrue("log/test2/170103000000.csv" in paths)
+        self.assertFalse("log/170101000000.csv" in paths)
+        self.assertFalse("log/170101120000.csv" in paths)
 
 
 if __name__ == '__main__':
