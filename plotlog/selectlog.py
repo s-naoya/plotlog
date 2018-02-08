@@ -1,6 +1,7 @@
 import copy
 from glob import glob
 
+
 class SelectLog:
     def __init__(self):
         pass
@@ -10,7 +11,7 @@ class SelectLog:
         if args.input:
             paths = copy.copy(args.input)
         elif args.all:
-            paths = glob(put_log_dir + "*")
+            paths = glob(put_log_dir + "**/*.*", recursive=True)
         elif args.after:
             pass
         elif args.select:

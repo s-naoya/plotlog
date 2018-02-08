@@ -32,12 +32,9 @@ class TestSelectLog(unittest.TestCase):
                               setting='user.yml', slice=None)
         paths = self.sl.get_logfile_paths(self.args, self.put_log_dir,
                                           self.graph_save_dir, self.log_date_type)
-        self.assertEqual(paths[0], "log/170101000000.csv")
-        self.assertEqual(paths[1], "log/170101120000.csv")
-        self.assertEqual(paths[2], "log/170102000000.csv")
-        self.assertTrue(os.path.exists(paths[0]))
-        self.assertTrue(os.path.exists(paths[1]))
-        self.assertTrue(os.path.exists(paths[2]))
+        for path in paths:
+            print(path)
+            self.assertTrue(os.path.isfile(path))
 
 
 if __name__ == '__main__':
