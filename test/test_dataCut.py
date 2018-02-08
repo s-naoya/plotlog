@@ -1,8 +1,6 @@
 import unittest
 
-import os.path
-
-from src.datacut import DataCut
+from plotlog.datacut import DataCut
 
 
 class TestDataCut(unittest.TestCase):

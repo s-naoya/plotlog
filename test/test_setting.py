@@ -1,5 +1,5 @@
 import unittest
-from src.setting import Setting
+from plotlog.setting import Setting
 
 
 class TestSetting(unittest.TestCase):

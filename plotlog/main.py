@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import os
 import re
 import sys
@@ -7,9 +7,9 @@ import argparse
 from glob import glob
 from os.path import splitext, basename, isfile, isdir
 
-from src.datacut import DataCut
-from src.plotgraph import PlotGraph
-from src.setting import Setting
+from plotlog.datacut import DataCut
+from plotlog.plotgraph import PlotGraph
+from plotlog.setting import Setting
 
 
 def main():

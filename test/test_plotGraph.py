@@ -1,8 +1,8 @@
 import unittest
 
-from src.datacut import DataCut
-from src.plotgraph import PlotGraph
-from src.setting import Setting
+from plotlog.datacut import DataCut
+from plotlog.plotgraph import PlotGraph
+from plotlog.setting import Setting
 
 
 class TestPlotGraph(unittest.TestCase):
