@@ -52,6 +52,22 @@ class TestSelectLog(unittest.TestCase):
         self.assertFalse("log/170101000000.csv" in paths)
         self.assertFalse("log/170101120000.csv" in paths)
 
+    def test_args_select(self):
+        self.args = Namespace(after=None, all=False, copy=False, input=None,
+                              new=True, noshift=False,
+                              select=["170102000000", "170103000000"],
+                              setting='user.yml', slice=None)
+        paths = self.sl.get_logfile_paths(self.args, self.put_log_dir,
+                                          self.graph_save_dir, self.log_date_type)
+        for path in paths:
+            self.assertTrue(isfile(path))
+
+        self.assertTrue("log/170102000000.csv" in paths)
+        self.assertFalse("log/test1/170102180000.csv" in paths)
+        self.assertTrue("log/test2/170103000000.csv" in paths)
+        self.assertFalse("log/170101000000.csv" in paths)
+        self.assertFalse("log/170101120000.csv" in paths)
+
 
 if __name__ == '__main__':
     unittest.main()

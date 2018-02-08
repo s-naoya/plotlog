@@ -18,7 +18,7 @@ class SelectLog:
         elif args.after:
             paths = self.__get_paths_of_after(args.after[0], put_log_dir, log_date_type)
         elif args.select:
-            pass
+            paths = self.__get_paths_of_select(args.select, put_log_dir)
         elif args.new:
             pass
 
@@ -31,6 +31,19 @@ class SelectLog:
             fn = splitext(basename(path))[0]
             if self.is_fn_in_date(fn, log_date_type) and fn >= date:
                 paths.append(path)
+        return paths
+
+    @staticmethod
+    def __get_paths_of_select(dates, put_log_dir):
+        paths = list()
+        for date in dates:
+            path = glob(put_log_dir + "**/" + date + ".*", recursive=True)
+            if len(path) == 1:
+                paths.append(path[0])
+            elif len(path) == 0:
+                print("error:", date, "logfile is not found")
+            else:
+                print("error: found several", date, "logfile")
         return paths
 
     @staticmethod
