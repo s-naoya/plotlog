@@ -4,6 +4,8 @@ from plotlog.datacut import DataCut
 from plotlog.plotgraph import PlotGraph
 from plotlog.setting import Setting
 
+from os import makedirs
+
 
 class TestPlotGraph(unittest.TestCase):
     def setUp(self):
@@ -18,6 +20,7 @@ class TestPlotGraph(unittest.TestCase):
         self.data.dispose()
 
     def test_plot_graph(self):
+        makedirs("graph/other/test", exist_ok=True)
         for stg in self.st.graph:
             path = "graph/other/test/test_"+stg["name"]+".png"
             self.pg.plot("graph/other/test", path, self.st.setting, stg,
