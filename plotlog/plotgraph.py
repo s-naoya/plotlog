@@ -11,6 +11,8 @@ class PlotGraph:
     def plot(self, p_path, g_path, st, gr, x, df):
         plt.figure(figsize=(st["graph_size"][0]*self.mm2inch,
                             st["graph_size"][1]*self.mm2inch))
+        plt.rcParams["font.family"] = st["font_family"]
+        plt.rcParams["font.size"] = st["font_size"]
 
         if "do_subplot" in gr:
             self.multi_plot(p_path, st, gr["do_subplot"], x, df)
