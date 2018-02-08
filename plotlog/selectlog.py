@@ -2,7 +2,7 @@ import re
 import sys
 import copy
 from glob import glob
-from os.path import splitext, basename
+from os.path import splitext, basename, isdir
 
 
 class SelectLog:
@@ -20,7 +20,7 @@ class SelectLog:
         elif args.select:
             paths = self.__get_paths_of_select(args.select, put_log_dir)
         elif args.new:
-            pass
+            paths = self.__get_paths_of_new(put_log_dir, graph_save_dir, log_date_type)
 
         return paths
 
@@ -29,7 +29,15 @@ class SelectLog:
         paths = list()
         for path in all_paths:
             fn = splitext(basename(path))[0]
-            if self.is_fn_in_date(fn, log_date_type) and fn >= date:
+            if self.__is_fn_in_date(fn, log_date_type) and fn >= date:
+                paths.append(path)
+        return paths
+
+    def __get_paths_of_new(self, put_log_dir, graph_save_dir, log_date_type):
+        paths = list()
+        for path in self.__all_logfile_path(put_log_dir):
+            date_time, date = self.__get_date(path, log_date_type)
+            if not isdir(graph_save_dir + date + "/" + date_time):
                 paths.append(path)
         return paths
 
@@ -51,7 +59,7 @@ class SelectLog:
         return glob(put_log_dir + "**/*.*", recursive=True)
 
     @staticmethod
-    def is_fn_in_date(s, f_type):
+    def __is_fn_in_date(s, f_type):
         if f_type == 0:
             return re.search("[%s]" % s, "[0-9]{2}[0-1][0-9][0-3][0-9]"
                                          "[0-2][0-9][0-5][0-9][0-5][0-9]")
@@ -67,3 +75,9 @@ class SelectLog:
         else:
             print("error: log_date_type is 0 or 1 or 2 or 3")
             sys.exit()
+
+    @staticmethod
+    def __get_date(path, f_type):
+        date_time = splitext(basename(path))[0]
+        date = date_time[0:6] if f_type == 0 or f_type == 1 else date_time[0:8]
+        return date_time, date
