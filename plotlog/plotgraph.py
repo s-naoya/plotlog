@@ -3,12 +3,14 @@ import matplotlib.pyplot as plt
 
 class PlotGraph:
     def_style = ["-", "--", "-.", ":"]
+    mm2inch = 1/25.4
 
     def __init__(self):
         pass
 
     def plot(self, p_path, g_path, st, gr, x, df):
-        plt.figure(figsize=(st["graph_size"][0]*0.01, st["graph_size"][1]*0.01))
+        plt.figure(figsize=(st["graph_size"][0]*self.mm2inch,
+                            st["graph_size"][1]*self.mm2inch))
 
         if "do_subplot" in gr:
             self.multi_plot(p_path, st, gr["do_subplot"], x, df)
