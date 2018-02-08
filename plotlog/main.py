@@ -10,12 +10,14 @@ from os.path import splitext, basename, isfile, isdir
 from plotlog.datacut import DataCut
 from plotlog.plotgraph import PlotGraph
 from plotlog.setting import Setting
+from plotlog.selectlog import SelectLog
 
 
 def main():
     args = arg_parser()
 
     st = Setting(args.setting)
+    sl = SelectLog()
 
     if args.copy:
         copy_config(st.default_strings)
