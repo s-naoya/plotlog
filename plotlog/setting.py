@@ -96,11 +96,9 @@ class Setting:
 
     def __set_default_setting(self):
         self.default_strings = """
+### You can edit this file and you can delete setting item if same to default.
 # log file separate character
-log_separate_char: ","
-
-# log file extension
-log_extension: "csv"
+log_separate_char: null
 
 # used date of log file name type. 0 or 1 or 2 or 3.
 # yymmddhhmmss -> 0, yymmddhhmm -> 1, yyyymmddhhmmss -> 2, yyyymmddhhmm -> 3
@@ -116,8 +114,8 @@ put_log_dir: "log/"
 graph_save_dir: "graph/"
 
 # graph size.
-# [ x[px], y[px] ]
-graph_size: [800, 600]
+# [ x[mm], y[mm] ]
+graph_size: [80, 60]
 
 # header row. If you don't use header, input "null".
 header_row: 0
@@ -127,7 +125,7 @@ header_row: 0
 xaxis_col: 0
 
 # data shift trigger column.
-shift_trig_col: 1
+shift_trig_col: 0
 
 # data shift trigger value.
 # do shift if shift_trig_val[0] < shift_trig_col < shift_trig_val[1]
