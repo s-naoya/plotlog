@@ -1,20 +1,20 @@
 import unittest
 
 from plotlog.datacut import DataCut
-from plotlog.plotgraph import PlotGraph
+from plotlog.drawgraph import DrawGraph
 from plotlog.setting import Setting
 
 from os import makedirs
 
 
-class TestPlotGraph(unittest.TestCase):
+class TestDrawGraph(unittest.TestCase):
     def setUp(self):
         self.st = Setting("user.yml")
         self.st.configure()
         self.data = DataCut("../test/log/170101000000.csv")
         self.data.import_file(0, ",")
         self.data.set_x_axis("x")
-        self.pg = PlotGraph()
+        self.pg = DrawGraph()
 
     def tearDown(self):
         self.data.dispose()

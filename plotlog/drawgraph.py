@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-class PlotGraph:
+class DrawGraph:
     def_style = ["-", "--", "-.", ":"]
     mm2inch = 1/25.4
 
@@ -15,19 +15,26 @@ class PlotGraph:
         plt.rcParams["font.size"] = st["font_size"]
 
         if "subplot" in gr:
-            self.multi_plot(p_path, st, gr["subplot"], x, df)
+            self.multi_draw(p_path, st, gr["subplot"], x, df)
         else:
-            self.single_plot(p_path, st, gr, x, df)
+            self.single_draw(p_path, st, gr, x, df)
 
         plt.savefig(g_path)
         plt.close()
 
-    def multi_plot(self, p_path, st, gr, x, df):
+    def multi_draw(self, p_path, st, gr, x, df):
         for g in gr:
             plt.subplot(g["grid"][0], g["grid"][1], g["grid"][2])
-            self.single_plot(p_path, st, g, x, df)
+            self.single_draw(p_path, st, g, x, df)
 
-    def single_plot(self, p_path, st, gr, x, df):
+    def single_draw(self, p_path, st, gr, x, df):
+        if gr["type"] == "plot":
+            self.plot(p_path, st, gr, x, df)
+        else:
+            print("error: type '"+gr["type"]+"' does not correspond")
+
+    # plot line graph
+    def plot(self, p_path, st, gr, x, df):
         def_num = 0
         plt.xlabel(gr["xlabel"])
         plt.ylabel(gr["ylabel"])

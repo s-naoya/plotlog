@@ -4,7 +4,7 @@ import argparse
 from os.path import isfile
 
 from plotlog.datacut import DataCut
-from plotlog.plotgraph import PlotGraph
+from plotlog.drawgraph import DrawGraph
 from plotlog.setting import Setting
 from plotlog.selectlog import SelectLog
 
@@ -24,7 +24,7 @@ def main():
                                           st.setting["put_log_dir"],
                                           st.setting["graph_save_dir"],
                                           st.setting["log_date_type"])
-    pg = PlotGraph()
+    pg = DrawGraph()
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
@@ -37,7 +37,7 @@ def main():
         for stg in st.graph:
             graph_path = save_dir + "/" + logfile_name + "_" + stg["name"] \
                          + memo + "." + st.setting["graph_extension"]
-            pg.plot(log_file_path, graph_path,
+            pg.draw(log_file_path, graph_path,
                     st.setting, stg, data.x_axis, data.df)
         print("Complete", logfile_name)
 
