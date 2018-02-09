@@ -23,7 +23,7 @@ class TestPlotGraph(unittest.TestCase):
         makedirs("graph/other/test", exist_ok=True)
         for stg in self.st.graph:
             path = "graph/other/test/test_"+stg["name"]+".png"
-            self.pg.plot("graph/other/test", path, self.st.setting, stg,
+            self.pg.draw("graph/other/test", path, self.st.setting, stg,
                          self.data.x_axis, self.data.df)
 
 

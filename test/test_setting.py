@@ -19,10 +19,10 @@ class TestSetting(unittest.TestCase):
         self.assertNotEqual(self.obj.graph[0]["xlabel"], "")
         self.assertEqual(self.obj.graph[0]["xlabel"], "x")
         self.assertEqual(self.obj.graph[0]["ylim"], [-1.5, 1.5])
-        self.assertEqual(len(self.obj.graph[0]["plot"]), 4)
-        self.assertTrue("color" in self.obj.graph[0]["plot"][0])
+        self.assertEqual(len(self.obj.graph[0]["elem"]), 4)
+        self.assertTrue("color" in self.obj.graph[0]["elem"][0])
         self.assertEqual(self.obj.graph[0]["legend"]["loc"], "best")
-        self.assertIsNotNone(self.obj.graph[1]["do_subplot"][1]["legend"]["ncol"])
+        self.assertIsNotNone(self.obj.graph[1]["subplot"][1]["legend"]["ncol"])
 
 
 if __name__ == '__main__':

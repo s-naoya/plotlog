@@ -1,7 +1,7 @@
 ---
 log_date_type: 0
 graph_extension: "png"
-graph_size: [800, 600]
+graph_size: [200, 150]
 put_log_dir: "log/"
 graph_save_dir: "graph/"
 shift_trig_col: "trig"
@@ -12,25 +12,25 @@ graph:
     xlabel: "x"
     ylabel: "val"
     ylim: [-1.5, 1.5]
-    plot:
+    elem:
       - {col: "sin"}
       - {col: "cos"}
       - {col: "trig"}
       - {col: "log"}
   - name: "test2"
-    do_subplot:
+    subplot:
       - xlabel: "x"
         ylabel: "val"
         ylim: [-1.5, 1.5]
-        plot:
+        elem:
           - {col: "sin"}
           - {col: "cos"}
-        subplot: [2, 1, 1]
+        grid: [2, 1, 1]
       - xlabel: "x"
         ylabel: "val"
         ylim: [-1.5, 1.5]
-        plot:
+        elem:
           - {col: "trig"}
           - {col: "log"}
         legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 4}
-        subplot: [2, 1, 2]
+        grid: [2, 1, 2]

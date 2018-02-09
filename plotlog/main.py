@@ -20,7 +20,8 @@ def main():
     st.configure()
 
     sl = SelectLog()
-    log_file_paths = sl.get_logfile_paths(args, st.setting["put_log_dir"],
+    log_file_paths = sl.get_logfile_paths(args,
+                                          st.setting["put_log_dir"],
                                           st.setting["graph_save_dir"],
                                           st.setting["log_date_type"])
     pg = PlotGraph()

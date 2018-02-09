@@ -44,12 +44,12 @@ class Setting:
     def __update_graph(self, default, from_, to):
         for f in from_:
             d = {}
-            if "do_subplot" in f:
-                d["do_subplot"] = self.__setup_subplot(default, f["do_subplot"])
+            if "subplot" in f:
+                d["subplot"] = self.__setup_subplot(default, f["subplot"])
                 d["name"] = f["name"]
             else:
                 for key in default:
-                    if key == "plot":
+                    if key == "elem":
                         ll = []
                         self.__update_graph(default[key][0], f[key], ll)
                         d[key] = ll
@@ -68,13 +68,13 @@ class Setting:
                     continue
                 elif key == "legend":
                     d[key] = self.__setup_legend(default["legend"], f)
-                elif key == "plot":
+                elif key == "elem":
                     lll = []
                     self.__update_graph(default[key][0], f[key], lll)
                     d[key] = lll
                 else:
                     d[key] = f[key] if key in f else default[key]
-            d["subplot"] = f["subplot"] if "subplot" in f else None
+            d["grid"] = f["grid"] if "grid" in f else None
             ll.append(d)
         return ll
 
@@ -147,24 +147,27 @@ graph:
     xlabel: ""  # x axis label
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
-    plot:  # plot line array
+    type: "plot"
+    elem:  # plot line array
       - {col: 1, label: null, color: null, style: "order", width: 1}
     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting. if no use legend, loc: null
   - name: "2"
-    do_subplot:
-    - xlabel: ""
-      ylabel: ""
-      ylim: [null, null]
-      plot:
-        - {col: 1, label: null, color: null, style: "order", width: 1}
-      legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-      subplot: [null, null, null]
-    - xlabel: ""
-      ylabel: ""
-      ylim: [null, null]
-      plot:
-        - {col: 2, label: null, color: null, style: "order", width: 1}
-      legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-      subplot: [null, null, null]
+    subplot:
+      - xlabel: ""
+        ylabel: ""
+        ylim: [null, null]
+        type: "plot"
+        elem:
+          - {col: 1, label: null, color: null, style: "order", width: 1}
+        legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
+        grid: [null, null, null]
+      - xlabel: ""
+        ylabel: ""
+        ylim: [null, null]
+        type: "plot"
+        elem:
+          - {col: 2, label: null, color: null, style: "order", width: 1}
+        legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
+        grid: [null, null, null]
         """
         self.default = yaml.load(self.default_strings)
