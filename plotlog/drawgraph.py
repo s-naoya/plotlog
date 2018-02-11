@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 class DrawGraph:
     def_style = ["-", "--", "-.", ":"]
-    mm2inch = 1/25.4
+    mm2inch = 0.03937007874  # 1/25.4
 
     def __init__(self):
         pass
@@ -59,3 +59,5 @@ class DrawGraph:
             plt.legend(loc=gr["legend"]["loc"],
                        bbox_to_anchor=gr["legend"]["bbox_to_anchor"],
                        ncol=gr["legend"]["ncol"])
+
+    # PLAN: scatter, bar, 3D(surface, wire frame, bar)
