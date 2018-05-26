@@ -6,7 +6,7 @@ import create_exlog as ce
 
 class TestSelectLog(unittest.TestCase):
     def setUp(self):
-        self.sl = SelectLog()
+        self.sl = SelectLog("log/", "graph/", "YY-MM-DD_hh_mm_ss")
         ce.create_exlog(log_date_type=0)
 
     def tearDown(self):
@@ -14,7 +14,7 @@ class TestSelectLog(unittest.TestCase):
 
     def test_get_paths_of_all(self):
         all_paths = [f[1]+f[0][2:]+".csv" for f in ce.default_files]
-        get_all_paths = self.sl.get_paths_of_all("log/")
+        get_all_paths = self.sl.get_paths_of_all()
 
         for all_path in all_paths:
             self.assertIn(all_path, get_all_paths)
@@ -23,9 +23,7 @@ class TestSelectLog(unittest.TestCase):
 
     def test_get_paths_of_after(self):
         after_date = "170102200000"
-        get_after_paths = self.sl.get_paths_of_after(after_date,
-                                                     "log/",
-                                                     0)
+        get_after_paths = self.sl.get_paths_of_after(after_date, 0)
         after_paths = [f[1]+f[0][2:]+".csv" for f in ce.default_files if int(f[0][2:]) >= int(after_date)]
         for after_path in after_paths:
             self.assertIn(after_path, get_after_paths)
@@ -34,7 +32,7 @@ class TestSelectLog(unittest.TestCase):
 
     def test_get_paths_of_select(self):
         sel_dates = ["170102200000", "170102000000"]
-        get_sel_paths = self.sl.get_paths_of_select(sel_dates, "log/")
+        get_sel_paths = self.sl.get_paths_of_select(sel_dates)
         sel_paths = []
         for sel_date in sel_dates:
             for f in ce.default_files:
@@ -50,11 +48,11 @@ class TestSelectLog(unittest.TestCase):
         if ce.isdir("./graph"):
             ce.rmtree("./graph")
         sel_dates = ["170102200000", "170101120000", "170102180000"]
-        get_sel_paths = self.sl.get_paths_of_select(sel_dates, "log/")
+        get_sel_paths = self.sl.get_paths_of_select(sel_dates)
         for path in get_sel_paths:
             self.sl.setup_save_dir(self.sl.get_fn(path), 0, "graph/")
 
-        get_new_paths = self.sl.get_paths_of_new("log/", "graph/", 0)
+        get_new_paths = self.sl.get_paths_of_new(0)
         new_paths = [f[1]+f[0][2:]+".csv" for f in ce.default_files]
         for get_sel_path in get_sel_paths:
             new_paths.remove(get_sel_path)
@@ -63,3 +61,8 @@ class TestSelectLog(unittest.TestCase):
             self.assertIn(new_path, get_new_paths)
         for get_new_path in get_new_paths:
             self.assertIn(get_new_path, new_paths)
+
+    def test_filename_to_date(self):
+        log_file_name = "17-01-02 20,00,00"
+        log_file_date = self.sl.fn_to_date(log_file_name)
+        self.assertEqual("170102200000", log_file_date)

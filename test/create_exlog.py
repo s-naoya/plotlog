@@ -46,7 +46,6 @@ def create_exlog(log_date_type=0, files=default_files):
 
         path = files[i][1]+name+".csv"
         df.to_csv(path, index=False)
-        # print("create "+path)
 
 
 if __name__ == '__main__':

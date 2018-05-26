@@ -104,6 +104,9 @@ log_separate_char: ","
 # yymmddhhmmss -> 0, yymmddhhmm -> 1, yyyymmddhhmmss -> 2, yyyymmddhhmm -> 3
 log_date_type: 0
 
+# Year: Y, Month: M, Day: D, Hour: h, Minute: m, Second: s
+# log_date_format: "YYYY-MM-DD-hh-mm-ss"
+
 # output graph extension.
 graph_extension: "png"
 
