@@ -15,13 +15,13 @@ class SelectLog:
         if args.input:
             paths = copy.copy(args.input)
         elif args.all:
-            paths = self.__all_logfile_path(put_log_dir)
+            paths = self.get_paths_of_all(put_log_dir)
         elif args.after:
-            paths = self.__get_paths_of_after(args.after[0], put_log_dir, log_date_type)
+            paths = self.get_paths_of_after(args.after[0], put_log_dir, log_date_type)
         elif args.select:
-            paths = self.__get_paths_of_select(args.select, put_log_dir)
+            paths = self.get_paths_of_select(args.select, put_log_dir)
         elif args.new:
-            paths = self.__get_paths_of_new(put_log_dir, graph_save_dir, log_date_type)
+            paths = self.get_paths_of_new(put_log_dir, graph_save_dir, log_date_type)
 
         for path in paths:
             if not isfile(path):
@@ -44,8 +44,8 @@ class SelectLog:
             makedirs(save_dir)
         return save_dir
 
-    def __get_paths_of_after(self, date, put_log_dir, log_date_type):
-        all_paths = self.__all_logfile_path(put_log_dir)
+    def get_paths_of_after(self, date, put_log_dir, log_date_type):
+        all_paths = self.get_paths_of_all(put_log_dir)
         paths = list()
         for path in all_paths:
             fn = splitext(basename(path))[0]
@@ -53,16 +53,16 @@ class SelectLog:
                 paths.append(path)
         return paths
 
-    def __get_paths_of_new(self, put_log_dir, graph_save_dir, log_date_type):
+    def get_paths_of_new(self, put_log_dir, graph_save_dir, log_date_type):
         paths = list()
-        for path in self.__all_logfile_path(put_log_dir):
+        for path in self.get_paths_of_all(put_log_dir):
             date_time, date = self.__get_date(self.get_fn(path), log_date_type)
             if not isdir(graph_save_dir + date + "/" + date_time):
                 paths.append(path)
         return paths
 
     @staticmethod
-    def __get_paths_of_select(dates, put_log_dir):
+    def get_paths_of_select(dates, put_log_dir):
         paths = list()
         for date in dates:
             path = glob(put_log_dir + "**/" + date + ".*", recursive=True)
@@ -75,7 +75,7 @@ class SelectLog:
         return paths
 
     @staticmethod
-    def __all_logfile_path(put_log_dir):
+    def get_paths_of_all(put_log_dir):
         return glob(put_log_dir + "**/*.*", recursive=True)
 
     @staticmethod
