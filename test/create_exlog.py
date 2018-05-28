@@ -13,6 +13,10 @@ default_files = [("20170101000000", "log/"),
                  ("20170103100000", "log/test2/")]
 
 
+def type_four(file):
+    return file[1] + file[0][2:4] + "-" + file[0][4:6]+"-"+file[0][6:8]+"_"+file[0][8:10]+"-"+file[0][10:12]+"-"+file[0][12:14] + ".csv"
+
+
 # log_date_type: 0 or 1 or 2 or 3
 def create_exlog(log_date_type=0, files=default_files):
     if isdir("./log"):
@@ -38,6 +42,8 @@ def create_exlog(log_date_type=0, files=default_files):
             name = files[i][0]
         elif log_date_type == 3:
             name = files[i][0][:-2]
+        elif log_date_type == 4:  # YY-MM-DD_hh-mm-ss
+            name = files[i][0][2:4] + "-" + files[i][0][4:6]+"-"+files[i][0][6:8]+"_"+files[i][0][8:10]+"-"+files[i][0][10:12]+"-"+files[i][0][12:14]
         else:
             name = ""
 

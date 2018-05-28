@@ -100,12 +100,9 @@ class Setting:
 # log file separate character
 log_separate_char: ","
 
-# used date of log file name type. 0 or 1 or 2 or 3.
-# yymmddhhmmss -> 0, yymmddhhmm -> 1, yyyymmddhhmmss -> 2, yyyymmddhhmm -> 3
-log_date_type: 0
-
-# Year: Y, Month: M, Day: D, Hour: h, Minute: m, Second: s
-# log_date_format: "YYYY-MM-DD-hh-mm-ss"
+# Year: YY or YYYY, Month: MM, Day: DD, Hour: hh, Minute: mm, Second: ss
+# You can use separate string  ex.) "YYYY-MM-DD-hh-mm-ss"
+log_date_format: "YYYY-MM-DD-hh-mm-ss"
 
 # output graph extension.
 graph_extension: "png"

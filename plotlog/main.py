@@ -19,20 +19,17 @@ def main():
 
     st.configure()
 
-    sl = SelectLog()
-    log_file_paths = sl.get_logfile_paths(args,
-                                          st.setting["put_log_dir"],
-                                          st.setting["graph_save_dir"],
-                                          st.setting["log_date_type"])
+    sl = SelectLog(st.setting["put_log_dir"],
+                   st.setting["graph_save_dir"],
+                   st.setting["log_date_format"])
+    log_file_paths = sl.get_logfile_paths(args)
     pg = DrawGraph()
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
         logfile_name = sl.get_fn(log_file_path)
 
-        save_dir = sl.setup_save_dir(logfile_name,
-                                     st.setting["log_date_type"],
-                                     st.setting["graph_save_dir"])
+        save_dir = sl.setup_save_dir(logfile_name)
 
         for stg in st.graph:
             graph_path = save_dir + "/" + logfile_name + "_" + stg["name"] \

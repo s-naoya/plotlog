@@ -1,10 +1,12 @@
 import unittest
 
 from plotlog.datacut import DataCut
+import create_exlog as ce
 
 
 class TestDataCut(unittest.TestCase):
     def setUp(self):
+        ce.create_exlog(log_date_type=0)
         self.data = DataCut("../test/log/170101000000.csv")
         self.assertTrue("../test/log/170101000000.csv")
 
