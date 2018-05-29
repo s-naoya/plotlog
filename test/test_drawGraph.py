@@ -5,10 +5,12 @@ from plotlog.drawgraph import DrawGraph
 from plotlog.setting import Setting
 
 from os import makedirs
+import create_exlog as ce
 
 
 class TestDrawGraph(unittest.TestCase):
     def setUp(self):
+        ce.create_exlog(log_date_type=0)
         self.st = Setting("user.yml")
         self.st.configure()
         self.data = DataCut("../test/log/170101000000.csv")

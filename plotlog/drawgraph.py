@@ -31,7 +31,7 @@ class DrawGraph:
         if gr["type"] == "plot":
             self.plot(p_path, st, gr, x, df)
         else:
-            print("error: type '"+gr["type"]+"' does not correspond")
+            print("error: type'", gr["type"], "'does not correspond")
 
     # plot line graph
     def plot(self, p_path, st, gr, x, df):
@@ -57,7 +57,8 @@ class DrawGraph:
                     print("error: out of bounds column'", grp["col"], "in", p_path)
                     continue
             else:
-                print("error: Specify plot column by string or integer", grp["col"], "in", p_path)
+                print("error: Specify plot column by string or integer",
+                      grp["col"], "in", p_path)
                 continue
 
             plt.plot(
