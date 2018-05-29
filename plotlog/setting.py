@@ -102,7 +102,7 @@ log_separate_char: ","
 
 # Year: YY or YYYY, Month: MM, Day: DD, Hour: hh, Minute: mm, Second: ss
 # You can use separate string  ex.) "YYYY-MM-DD-hh-mm-ss"
-log_date_format: "YYYY-MM-DD-hh-mm-ss"
+log_date_format: "YYMMDDhhmmss"
 
 # output graph extension.
 graph_extension: "png"
@@ -148,7 +148,12 @@ graph:
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
     type: "plot"
-    elem:  # plot line array
+    elem:  # plot line array 
+      # col: plot column. column number or header string.
+      # label: legend label(str). if null, label string same col.
+      # color: plot line color. color name(str) or color code(Hexadecimal) or color cycle number(int).
+      # style: plot line style, same matplotlib's linestyle. if "order", cycle 4 style.
+      # width: plot line width.
       - {col: 1, label: null, color: null, style: "order", width: 1}
     legend: {loc: "best", bbox_to_anchor: null, ncol: 1}  # legend setting. if no use legend, loc: null
   - name: "2"
@@ -160,7 +165,7 @@ graph:
         elem:
           - {col: 1, label: null, color: null, style: "order", width: 1}
         legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-        grid: [null, null, null]
+        grid: [null, null, null]  # [row number, column number, plot number]
       - xlabel: ""
         ylabel: ""
         ylim: [null, null]
