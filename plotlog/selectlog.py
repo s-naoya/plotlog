@@ -72,9 +72,6 @@ class SelectLog:
             if self.is_date_in_fn(fn) and\
                     self.fn_to_datetime(fn) >= self.fn_to_datetime(date):
                 paths.append(path)
-            else:
-                a = self.fn_to_datetime(fn)
-                b = self.fn_to_datetime(date)
         return paths
 
     def get_paths_of_new(self):

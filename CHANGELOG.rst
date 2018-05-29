@@ -1,5 +1,13 @@
 Change Log
 ======
+v0.3.0
+----------
+
+* Some destructive change of setting file.
+* Specify log file name format flexible. (omit log_date_type)
+* Correspond color cycle of matplotlib plot.
+* And some bag fix.
+
 
 v0.2.0
 ----------

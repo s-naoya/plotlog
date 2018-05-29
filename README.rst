@@ -61,7 +61,7 @@ First, create setting file.
 
     plotlog --copy
 
-edit the created user.yml, setting each pass and the graph etc to
+Edit the created user.yml, setting each pass and the graph etc to
 create. Setting items that do not need to be changed may be deleted.
 
 Finish edit user.yml, create graph.
@@ -71,7 +71,7 @@ Finish edit user.yml, create graph.
     plotlog
 
 If user.yml is set correctly, a graph is drawn for a log file that has
-not yet been output.
+not yet been output graph.
 
 Setting
 -------
@@ -82,17 +82,13 @@ a new yaml file and reading it with the ``--setting`` argument.
 Log file condition
 ------------------
 
--  File name: recommend “yymmddhhmmss.csv” or “yymmddhhmm.csv” or
-   “yyyymmddhhmmss.csv” or “yyyymmddhhmm.csv” used date.
-
-   -  e.g.) 171230235900.csv
-   -  specified in the setting file which select file name type to
-      “log_date_type”.
-
+-  Be sure to use the year, month, date, and time as the name of the log file and cam use some symbol.
+   However, all log file names under put_log_dir must be in the same format.
+   The format is specified by log_date_format in the configuration file.
 -  Extension and separate character can change setting file.
 -  All column equal all row
 -  Put on the directory specified in the setting file (except when using
-   –input)
+   –-input)
 
 LICENCE
 -------
