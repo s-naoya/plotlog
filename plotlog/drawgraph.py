@@ -43,6 +43,11 @@ class DrawGraph:
                 grp["style"] = self.def_style[def_num]
                 def_num = def_num + 1 if def_num < 3 else 0
 
+            if type(grp["color"]) is int:
+                color = "C"+str(grp["color"])
+            else:
+                color = grp["color"]
+
             if type(grp["col"]) is str:
                 if not grp["col"] in df.columns:
                     print("error: column'", grp["col"], "' is not exist in", p_path)
@@ -57,7 +62,7 @@ class DrawGraph:
 
             plt.plot(
                 x, df.ix[:, grp["col"]],
-                label=grp["label"], color=grp["color"],
+                label=grp["label"], color=color,
                 linestyle=grp["style"], linewidth=grp["width"]
             )
         plt.xlim(st["xlim"])
