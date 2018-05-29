@@ -43,8 +43,16 @@ class DrawGraph:
                 grp["style"] = self.def_style[def_num]
                 def_num = def_num + 1 if def_num < 3 else 0
 
-            if not grp["col"] in df.columns and grp["col"] > len(df.columns):
-                print("error: column '"+str(grp["col"])+"' is not exist in", p_path)
+            if type(grp["col"]) is str:
+                if not grp["col"] in df.columns:
+                    print("error: column'", grp["col"], "' is not exist in", p_path)
+                    continue
+            elif type(grp["col"]) is int:
+                if grp["col"] > len(df.columns):
+                    print("error: out of bounds column'", grp["col"], "in", p_path)
+                    continue
+            else:
+                print("error: Specify plot column by string or integer", grp["col"], "in", p_path)
                 continue
 
             plt.plot(
