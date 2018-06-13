@@ -12,7 +12,7 @@ from plotlog.selectlog import SelectLog
 def main():
     args = arg_parser()
 
-    st = Setting(args.setting)
+    st = Setting(args.setting[0])
 
     if args.copy:
         copy_config(st.default_strings)
@@ -81,7 +81,7 @@ def arg_parser():
                         help="select setting file (default:'user.yml')",
                         action="store",
                         nargs=1,
-                        default="user.yml",
+                        default=["user.yml"],
                         metavar="SETTING_FILE_PATH")
     parser.add_argument("--copy",
                         help="copy original setting file",
