@@ -1,5 +1,11 @@
 Change Log
 ======
+v0.3.1
+----------
+
+* Bag fix of --setting tag
+
+
 v0.3.0
 ----------
 

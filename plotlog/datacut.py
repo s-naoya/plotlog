@@ -8,17 +8,16 @@ class DataCut:
     __log_file_path = list()
     __x_col = None
 
-    def __init__(self, log_file_path):
-        self.__log_file_path.append(log_file_path)
+    def __init__(self):
+        pass
 
     def dispose(self):
-        self.__log_file_path.clear()
+        self.__log_file_path = None
         self.df = None
         self.x_axis = None
 
-    def import_file(self, header, sep):
-        for path in self.__log_file_path:
-            self.df = pd.read_csv(path, header=header, sep=sep)
+    def import_file(self, path, header=0, sep=","):
+        self.df = pd.read_csv(path, header=header, sep=sep)
 
     def set_x_axis(self, x_col):
         self.x_axis = self.df.ix[:, x_col]

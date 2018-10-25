@@ -13,8 +13,8 @@ class TestDrawGraph(unittest.TestCase):
         ce.create_exlog(log_date_type=0)
         self.st = Setting("user.yml")
         self.st.configure()
-        self.data = DataCut("../test/log/170101000000.csv")
-        self.data.import_file(0, ",")
+        self.data = DataCut()
+        self.data.import_file("log/170101000000.csv")
         self.data.set_x_axis("x")
         self.pg = DrawGraph()
 

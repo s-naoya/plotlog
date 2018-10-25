@@ -43,8 +43,8 @@ def main():
 
 
 def setup_data_frame(args, st, path):
-    data = DataCut(path)
-    data.import_file(st["header_row"], st["log_separate_char"])
+    data = DataCut()
+    data.import_file(path, st["header_row"], st["log_separate_char"])
     data.set_x_axis(st["xaxis_col"])
     memo = ""
     if args.noshift:
