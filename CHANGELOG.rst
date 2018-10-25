@@ -1,9 +1,15 @@
 Change Log
-======
+==========
+v0.3.2
+----------
+
+* Output message and continue if it is cannot imported logfile normally.
+
+
 v0.3.1
 ----------
 
-* Bag fix of --setting tag
+* Bag fix of --setting tag.
 
 
 v0.3.0
@@ -18,9 +24,9 @@ v0.3.0
 v0.2.0
 ----------
 
-* Correspond subdirectory of put_log_dir
-* Some fix of setting items
-* And some bag fix
+* Correspond subdirectory of put_log_dir.
+* Some fix of setting items.
+* And some bag fix.
 
 
 v0.1.0

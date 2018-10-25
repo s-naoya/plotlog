@@ -11,7 +11,7 @@ except IOError:
 
 setup(
     name='plotlog',
-    version='0.3.1',
+    version='0.3.2',
     description='Plot graph for many log file that is managed by DATE',
     long_description=readme,
     url='https://github.com/s-naoya/plotlog',

@@ -27,6 +27,8 @@ def main():
 
     for log_file_path in log_file_paths:
         data, memo = setup_data_frame(args, st.setting, log_file_path)
+        if not data and not memo:
+            continue
         logfile_name = sl.get_fn(log_file_path)
 
         save_dir = sl.setup_save_dir(logfile_name)
@@ -44,7 +46,10 @@ def main():
 
 def setup_data_frame(args, st, path):
     data = DataCut()
-    data.import_file(path, st["header_row"], st["log_separate_char"])
+    is_success = data.import_file(path, st["header_row"], st["log_separate_char"])
+    if not is_success:
+        return False, False
+
     data.set_x_axis(st["xaxis_col"])
     memo = ""
     if args.noshift:

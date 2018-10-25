@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 
 
@@ -17,7 +18,15 @@ class DataCut:
         self.x_axis = None
 
     def import_file(self, path, header=0, sep=","):
-        self.df = pd.read_csv(path, header=header, sep=sep)
+        try:
+            self.df = pd.read_csv(path, header=header, sep=sep)
+        except:
+            print(path, "is cannot imported:", sys.exc_info()[0])
+            return False
+        if len(self.df.index) == 0:
+            print(path, "is empty.")
+            return False
+        return True
 
     def set_x_axis(self, x_col):
         self.x_axis = self.df.ix[:, x_col]
