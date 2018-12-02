@@ -74,7 +74,7 @@ class Setting:
                     d[key] = lll
                 else:
                     d[key] = f[key] if key in f else default[key]
-            d["grid"] = f["grid"] if "grid" in f else None
+            d["pos"] = f["pos"] if "pos" in f else None
             ll.append(d)
         return ll
 
@@ -165,7 +165,7 @@ graph:
         elem:
           - {col: 1, label: null, color: null, style: "order", width: 1}
         legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-        grid: [null, null, null]  # [row number, column number, plot number]
+        pos: [null, null, null]  # [row number, column number, plot number]
       - xlabel: ""
         ylabel: ""
         ylim: [null, null]
@@ -173,6 +173,6 @@ graph:
         elem:
           - {col: 2, label: null, color: null, style: "order", width: 1}
         legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
-        grid: [null, null, null]
+        pos: [null, null, null]
         """
         self.default = yaml.load(self.default_strings)

@@ -25,7 +25,7 @@ graph:
         elem:
           - {col: "sin"}
           - {col: "cos"}
-        grid: [2, 1, 1]
+        pos: [2, 1, 1]
       - xlabel: "x"
         ylabel: "val"
         ylim: [-1.5, 1.5]
@@ -33,4 +33,4 @@ graph:
           - {col: "trig"}
           - {col: "log"}
         legend: {loc: "upper center", bbox_to_anchor: [0.5, 1.12], ncol: 4}
-        grid: [2, 1, 2]
+        pos: [2, 1, 2]

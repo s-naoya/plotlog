@@ -24,7 +24,7 @@ class DrawGraph:
 
     def multi_draw(self, p_path, st, gr, x, df):
         for g in gr:
-            plt.subplot(g["grid"][0], g["grid"][1], g["grid"][2])
+            plt.subplot(g["pos"][0], g["pos"][1], g["pos"][2])
             self.single_draw(p_path, st, g, x, df)
 
     def single_draw(self, p_path, st, gr, x, df):
