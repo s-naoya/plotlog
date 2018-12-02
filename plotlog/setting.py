@@ -147,6 +147,7 @@ graph:
     xlabel: ""  # x axis label
     ylabel: ""  # y axis label
     ylim: [null, null]  # y axis limiter
+    grid: false
     type: "plot"
     elem:  # plot line array 
       # col: plot column. column number or header string.
@@ -161,6 +162,7 @@ graph:
       - xlabel: ""
         ylabel: ""
         ylim: [null, null]
+        grid: false
         type: "plot"
         elem:
           - {col: 1, label: null, color: null, style: "order", width: 1}
@@ -169,6 +171,7 @@ graph:
       - xlabel: ""
         ylabel: ""
         ylim: [null, null]
+        grid: false
         type: "plot"
         elem:
           - {col: 2, label: null, color: null, style: "order", width: 1}

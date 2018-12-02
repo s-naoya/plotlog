@@ -69,6 +69,9 @@ class DrawGraph:
         plt.xlim(st["xlim"])
         plt.ylim(gr["ylim"])
 
+        if gr["grid"]:
+            plt.grid()
+
         if gr["legend"]["loc"] is not None:
             plt.legend(loc=gr["legend"]["loc"],
                        bbox_to_anchor=gr["legend"]["bbox_to_anchor"],

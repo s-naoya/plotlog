@@ -12,6 +12,7 @@ graph:
     xlabel: "x"
     ylabel: "val"
     ylim: [-1.5, 1.5]
+    grid: True
     elem:
       - {col: "sin"}
       - {col: "cos"}
