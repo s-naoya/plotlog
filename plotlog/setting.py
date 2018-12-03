@@ -178,15 +178,5 @@ graph:
           - {col: 2, label: null, color: null, style: "order", width: 1}
         legend: {loc: "best", bbox_to_anchor: null, ncol: 1}
         pos: [null, null, null]
-
-footprint:
-  feet_contact_col: 1
-  feet_contact_param: [0, 1, 2]  # [right, left, both]
-  feet_pos_col: [[2, 3], [4, 5]]  # [[right x, right y], [left x, left y]]
-  # [right foot[[X axis length of point to right, left], 
-  #             [Y axis length of point to upper, bottom]],
-  #  left foot[[X axis length of point to right, left], 
-  #            [Y axis length of point to upper, bottom]]
-  feet_size: [[[0.1, 0.1], [0.2, 0.1]], [[0.1, 0.1], [0.2, 0.1]]]
         """
         self.default = yaml.load(self.default_strings)
