@@ -1,5 +1,13 @@
 Change Log
 ==========
+v0.4.0
+----------
+
+* Change "grid" option name to "pos".
+* Add "grid" option that show grid line.
+* "ix" method of pandas.Dataframe to "loc" or "iloc".
+
+
 v0.3.2
 ----------
 
