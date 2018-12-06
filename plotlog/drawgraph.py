@@ -50,22 +50,31 @@ class DrawGraph:
 
             if type(grp["col"]) is str:
                 if not grp["col"] in df.columns:
-                    print("error: column'", grp["col"], "' is not exist in", p_path)
+                    print("error: column'", grp["col"],
+                          "' is not exist in", p_path)
                     continue
             elif type(grp["col"]) is int:
                 if grp["col"] > len(df.columns):
-                    print("error: out of bounds column'", grp["col"], "in", p_path)
+                    print("error: out of bounds column'",
+                          grp["col"], "in", p_path)
                     continue
             else:
                 print("error: Specify plot column by string or integer",
                       grp["col"], "in", p_path)
                 continue
 
-            plt.plot(
-                x, df.ix[:, grp["col"]],
-                label=grp["label"], color=color,
-                linestyle=grp["style"], linewidth=grp["width"]
-            )
+            if grp["col"] in df:
+                plt.plot(
+                    x, df.loc[:, grp["col"]],
+                    label=grp["label"], color=color,
+                    linestyle=grp["style"], linewidth=grp["width"]
+                )
+            else:
+                plt.plot(
+                    x, df.iloc[:, grp["col"]],
+                    label=grp["label"], color=color,
+                    linestyle=grp["style"], linewidth=grp["width"]
+                )
         plt.xlim(st["xlim"])
         plt.ylim(gr["ylim"])
 
