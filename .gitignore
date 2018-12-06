@@ -1,5 +1,7 @@
 .idea/
 .cache/
+.vscode/
+venv/
 test/log/
 test/graph/
 build/
