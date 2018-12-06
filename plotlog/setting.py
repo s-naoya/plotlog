@@ -26,7 +26,6 @@ class Setting:
 
         self.__update_graph(copy.deepcopy(self.default["graph"][0]),
                             self.__user["graph"], self.graph)
-        print(self.setting)
 
     def dispose(self):
         self.default.clear()
@@ -150,7 +149,7 @@ graph:
     ylim: [null, null]  # y axis limiter
     grid: false
     type: "plot"
-    elem:  # plot line array 
+    elem:  # plot line array
       # col: plot column. column number or header string.
       # label: legend label(str). if null, label string same col.
       # color: plot line color. color name(str) or color code(Hexadecimal) or color cycle number(int).
